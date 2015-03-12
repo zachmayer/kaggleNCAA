@@ -6,6 +6,7 @@
 #'
 #' @param bracket A bracket to print off
 #' @param add_seed Add the team's seed in parenthesis
+#' @param add_prob Add the team's probability of making it this far
 #' @return NULL
 #' @importFrom data.table setnames copy
 #' @export
@@ -14,7 +15,7 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printableBracket <- function(bracket, add_seed=TRUE){
+printableBracket <- function(bracket, add_seed=TRUE, add_prob=TRUE){
   data('seed_print_positions', package='kaggleNCAA', envir=environment())
   data('slot_print_positions', package='kaggleNCAA', envir=environment())
   data('tourney_seeds', package='kaggleNCAA', envir=environment())
@@ -43,6 +44,11 @@ printableBracket <- function(bracket, add_seed=TRUE){
 
     bracket_seeds[,team_name := paste0(team_name, '-(', seed_int, ')')]
     bracket[,team_name := paste0(team_name, '-(', seed_int, ')')]
+  }
+
+  #Add probs
+  if(add_prob){
+    bracket[,team_name := paste0(team_name, '-(', round(prob, 2), ')')]
   }
 
   #Add printing positions
