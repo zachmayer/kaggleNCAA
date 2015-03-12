@@ -1,11 +1,10 @@
 #' @title Generate a printable NCAA bracket
 #'
-#' @description Given the results of simTourney, this function generates
-#' a pritable bracket
+#' @description Given an NCAA tournament bracket (a list of slots and who won
+#' the game) this function will plot the bracket in a way that can be printed
+#' off.
 #'
-#' @details Runs N simulations of the NCAA tournament
-#' @note No guarantees the format will be correct!
-#' @param tourney The outcome of a simTourney run
+#' @param bracket A bracket to print off
 #' @return NULL
 #' @importFrom data.table setnames
 #' @export
@@ -14,39 +13,28 @@
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printableBracket <- function(tourney){
+printableBracket <- function(bracket){
   data('seed_print_positions', package='kaggleNCAA', envir=environment())
   data('slot_print_positions', package='kaggleNCAA', envir=environment())
   data('tourney_seeds', package='kaggleNCAA', envir=environment())
   data('teams', package='kaggleNCAA', envir=environment())
 
   #Checks
-  year <- sort(unique(tourney$season))
+  year <- sort(unique(bracket$season))
   stopifnot(length(year)==1)
 
   #Subset seeds current year
   tourney_seeds <- tourney_seeds[season == year,]
 
-  #Walk backwards from the championship and choose a single tournament outcome
-  tourney[, slot_int := as.integer(slot)]
-  all_slots <- tourney[,sort(unique(slot_int))]
-  for(s in all_slots){
-
-    keep <- tourney[slot_int == s, winner[1]]
-    prior_slots <- tourney[winner == keep & slot_int >= s,]
-
-    tourney <- tourney[winner == keep | !(slot_int %in% prior_slots$slot_int),]
-  }
-
   #Add team names
   setnames(teams, 'team_id', 'team')
-  setnames(tourney, 'winner', 'team')
-  tourney_seeds <- merge(tourney_seeds, teams, by='team', all.x=TRUE)
-  tourney <- merge(tourney, teams, by='team', all.x=TRUE)
+  setnames(bracket, 'winner', 'team')
+  bracket_seeds <- merge(tourney_seeds, teams, by='team', all.x=TRUE)
+  bracket <- merge(bracket, teams, by='team', all.x=TRUE)
 
   #Add printing positions
-  tourney_seeds <- merge(tourney_seeds, seed_print_positions, by=c('seed'), all.x=TRUE)
-  tourney <- merge(tourney, slot_print_positions, by=c('slot'), all.x=TRUE)
+  bracket_seeds <- merge(bracket_seeds, seed_print_positions, by=c('seed'), all.x=TRUE)
+  bracket <- merge(bracket, slot_print_positions, by=c('slot'), all.x=TRUE)
 
   #Setup plot
   x <- seq(0,220,(221/67))
@@ -73,8 +61,8 @@ printableBracket <- function(tourney){
   segments(120,c(15,49),140,c(15,49))
 
   #Print seeds, then bracket
-  text(tourney_seeds$x, tourney_seeds$y, tourney_seeds$team_name,cex=.3)
-  text(tourney$x, tourney$y, tourney$team_name,cex=.3)
+  text(bracket_seeds$x, bracket_seeds$y, bracket_seeds$team_name,cex=.3)
+  text(bracket$x, bracket$y, bracket$team_name,cex=.3)
 
   #Return nothing
   return(invisible())
