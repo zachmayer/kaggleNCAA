@@ -11,6 +11,8 @@ teams <- data.table::fread(system.file('kaggle_data/teams.csv', package = "kaggl
 tourney_compact_results <- data.table::fread(system.file('kaggle_data/tourney_compact_results.csv', package = "kaggleNCAA"))
 tourney_seeds <- data.table::fread(system.file('kaggle_data/tourney_seeds.csv', package = "kaggleNCAA"))
 tourney_slots <- data.table::fread(system.file('kaggle_data/tourney_slots.csv', package = "kaggleNCAA"))
+seasons <- data.table::fread(system.file('kaggle_data/seasons.csv', package = "kaggleNCAA"))
+tourney_detailed_results <- data.table::fread(system.file('kaggle_data/tourney_detailed_results.csv', package = "kaggleNCAA"))
 
 ##########################################
 # Add 2015 data
@@ -23,7 +25,7 @@ tourney_slots_2015 <- data.table::fread(system.file('kaggle_data/tourney_slots_2
 tourney_seeds <- rbind(tourney_seeds, tourney_seeds_2015)
 tourney_slots <- rbind(tourney_slots, tourney_slots_2015)
 
-devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots, sample_submission_seed_2015, overwrite=TRUE)
+devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots, seasons, tourney_detailed_results, sample_submission_seed_2015, overwrite=TRUE)
 
 ##########################################
 # Seed and slot print positions

@@ -52,6 +52,24 @@ NULL
 #' @keywords data
 NULL
 
+#' seasons.csv from Kaggle
+#'
+#' @name seasons
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @keywords data
+NULL
+
+#' tourney_detailed_results.csv from Kaggle
+#'
+#' @name tourney_detailed_results
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @keywords data
+NULL
+
 #' Printing positions for each slot in the tournament.  This is for generating
 #' a printable bracket.
 #'
