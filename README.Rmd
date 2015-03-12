@@ -11,7 +11,7 @@ output:
 
 #Kaggle NCAA Bracket Simulator
 Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup).  Install the package with:
-```{r, echo = TRUE}
+```{r, echo = TRUE, eval=FALSE}
 devtools::install_github('zachmayer/kaggleNCAA')
 ```
 
