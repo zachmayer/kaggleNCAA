@@ -60,9 +60,16 @@ printableBracket <- function(bracket){
   segments(140,c(7,41),140,c(23,57))
   segments(120,c(15,49),140,c(15,49))
 
-  #Print seeds, then bracket
-  text(bracket_seeds$x, bracket_seeds$y, bracket_seeds$team_name,cex=.3)
-  text(bracket$x, bracket$y, bracket$team_name,cex=.3)
+  #Print Winner
+  winner <- bracket[slot == 'R6CH',]
+  text(winner$x,winner$y,winner$team_name, cex=2.5)
+
+  #Print Bracket
+  bracket <- bracket[slot != 'R6CH',]
+  text(bracket$x, bracket$y, bracket$team_name,cex=.4)
+
+  #Print seeds
+  text(bracket_seeds$x, bracket_seeds$y, bracket_seeds$team_name,cex=.4)
 
   #Return nothing
   return(invisible())
