@@ -12,8 +12,9 @@ devtools::install_github('zachmayer/kaggleNCAA')
 ```
 
 ``` {.r}
+set.seed(1)
 library('kaggleNCAA')
-f <- system.file('kaggle_data/sample_submission_2015_prelim_seed.csv', package = "kaggleNCAA", mustWork=TRUE)
+f <- system.file('kaggle_data/sample_submission_2015_prelim_seed.csv', package = "kaggleNCAA")
 dat <- parseBracket(f)
 sim <- simTourney(dat, 1000, year=2015, progress=TRUE)
 bracket <- extractBracket(sim)
