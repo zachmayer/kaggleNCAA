@@ -54,6 +54,8 @@ simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
   sims[, prob := count / N]
   sims <- sims[order(count, decreasing=TRUE)]
 
+  #Add year and return
+  sims[, season := year]
   return(sims)
 }
 

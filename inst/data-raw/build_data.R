@@ -18,8 +18,9 @@ devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_se
 # Seed and slot print positions
 ##########################################
 
-slot_print_positions <- data.table::fread(system.file('kaggle_data/slot_print_positions.csv', package = "kaggleNCAA"))
 seed_print_positions <- data.table::fread(system.file('kaggle_data/seed_print_positions.csv', package = "kaggleNCAA"))
+slot_print_positions <- data.table::fread(system.file('kaggle_data/slot_print_positions.csv', package = "kaggleNCAA"))
+devtools::use_data(seed_print_positions, slot_print_positions, overwrite=TRUE)
 
 ##########################################
 # Assign find every possible matchup and what slot it would occur in

@@ -9,9 +9,6 @@ printableBracket(tourney)
 \arguments{
 \item{tourney}{The outcome of a simTourney run}
 }
-\value{
-nothing
-}
 \description{
 Given the results of simTourney, this function generates
 a pritable bracket
@@ -23,6 +20,9 @@ Runs N simulations of the NCAA tournament
 No guarantees the format will be correct!
 }
 \references{
-\url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.60.2859&rep=rep1&type=pdf}
+\url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12775/printable-bracket-for-r}
+\url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
+\url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
+\url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
 }
 
