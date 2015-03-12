@@ -1,1 +1,1 @@
-globalVariables(c("id", "season", "team_1", "team_2"))
+globalVariables(c("id", "season", "team_1", "team_2", "all_slots", "rand", ".N", "winner", "pred", "keep", "count", "prob", "n", "next_slot", "keep_team_1", "keep_team_2", "team_1_playedin", "team_2_playedin"))

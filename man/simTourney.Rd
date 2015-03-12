@@ -4,12 +4,17 @@
 \alias{simTourney}
 \title{Simulate the NCAA tournament}
 \usage{
-simTourney(preds, year = 2014)
+simTourney(preds, N = 1000, year = 2014, progress = TRUE)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
 
-\item{year}{The year of the tournament.  Used to lookup the correct slots.}
+\item{N}{number of simulations}
+
+\item{year}{The year of the tournament.  Used to subset preds, if preds
+contain multiple seasons}
+
+\item{progress}{If TRUE, a progress bar will be printed}
 }
 \value{
 a data.table
