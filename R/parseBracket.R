@@ -9,6 +9,10 @@
 #' @return a data.table
 #' @importFrom data.table fread setcolorder setkeyv :=
 #' @export
+#' @examples
+#' f <- system.file('kaggle_data/sample_submission.csv', package = "kaggleNCAA", mustWork=TRUE)
+#' dat <- parseBracket(f)
+#' head(dat)
 parseBracket <- function(f){
   dat <- fread(f)
   dat[, id := strsplit(dat$id, '_')]

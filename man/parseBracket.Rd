@@ -22,4 +22,9 @@ problems
 \note{
 Will only have 1 row per game, where team_1 is the lower id team
 }
+\examples{
+f <- system.file('kaggle_data/sample_submission.csv', package = "kaggleNCAA", mustWork=TRUE)
+dat <- parseBracket(f)
+head(dat)
+}
 
