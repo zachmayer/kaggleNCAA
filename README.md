@@ -9,9 +9,9 @@ Simulate the NCAA tournament based on a kaggle-format bracket (with predictions 
 
 ``` {.r}
 library('kaggleNCAA')
-f <- system.file('kaggle_data/sample_submission.csv', package = "kaggleNCAA", mustWork=TRUE)
+f <- system.file('kaggle_data/sample_submission_2015_prelim_seed.csv', package = "kaggleNCAA", mustWork=TRUE)
 dat <- parseBracket(f)
-sim <- simTourney(dat, 10, year=2014, progress=TRUE)
+sim <- simTourney(dat, 100, year=2015, progress=TRUE)
 bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
