@@ -72,5 +72,5 @@ all_slots <- merge(all_slots, slot_tree, by = c('season', 'slot'), all.x=TRUE)
 # Save final dataset
 ##########################################
 
-data.table::setkeyv(all_slots, c('season', 'slot'))
+data.table::setkeyv(all_slots, c('season', 'slot', 'seed_1', 'seed_2'))
 devtools::use_data(all_slots, overwrite=TRUE)
