@@ -1,8 +1,8 @@
 Package: kaggleNCAA
 Type: Package
 Title: Simulate the NCAA tournament
-Version: 1.0.0
-Date: 2015-01-14
+Version: 0.0.0.9000
+Date: 2015-03-12
 Authors@R: person(c("Zachary", "A."), "Mayer", role = c("aut", "cre"),
     email = "zach.mayer@gmail.com")
 URL: https://github.com/zachmayer/kaggle_ncaa_sim
