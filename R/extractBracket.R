@@ -9,23 +9,22 @@
 #' works backwards to determine a single result from a simulation.
 #' @param sim The outcome of a simTourney run
 #' @return a data.table
-#' @importFrom data.table setnames
+#' @importFrom data.table copy
 #' @export
-#' @references
 extractBracket <- function(sim){
 
   #Make a deep copy, so we don't update the original data
-  sim <- copy(sim)
+  dat <- copy(sim)
 
   #Walk backwards from the championship and choose a single tournament outcome
-  sim[, slot_int := as.integer(slot)]
-  all_slots <- sim[,sort(unique(slot_int))]
+  dat[, slot_int := as.integer(slot)]
+  all_slots <- dat[,sort(unique(slot_int))]
   for(s in all_slots){
 
-    keep <- sim[slot_int == s, winner[1]]
-    prior_slots <- sim[winner == keep & slot_int >= s,]
+    keep <- dat[slot_int == s, winner[1]]
+    prior_slots <- dat[winner == keep & slot_int >= s,]
 
-    sim <- sim[winner == keep | !(slot_int %in% prior_slots$slot_int),]
+    dat <- dat[winner == keep | !(slot_int %in% prior_slots$slot_int),]
   }
-  return(sim)
+  return(dat)
 }

@@ -4,20 +4,15 @@
 \alias{printableBracket}
 \title{Generate a printable NCAA bracket}
 \usage{
-printableBracket(tourney)
+printableBracket(bracket)
 }
 \arguments{
-\item{tourney}{The outcome of a simTourney run}
+\item{bracket}{A bracket to print off}
 }
 \description{
-Given the results of simTourney, this function generates
-a pritable bracket
-}
-\details{
-Runs N simulations of the NCAA tournament
-}
-\note{
-No guarantees the format will be correct!
+Given an NCAA tournament bracket (a list of slots and who won
+the game) this function will plot the bracket in a way that can be printed
+off.
 }
 \references{
 \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12775/printable-bracket-for-r}
