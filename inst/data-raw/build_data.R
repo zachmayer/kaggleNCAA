@@ -2,7 +2,10 @@
 #Clear all existing in-RAM data
 rm(list=ls(all=TRUE))
 
-#Load Kaggle Data
+##########################################
+# Base Kaggle Data
+##########################################
+
 sample_submission <- data.table::fread(system.file('kaggle_data/teams.csv', package = "kaggleNCAA"))
 teams <- data.table::fread(system.file('kaggle_data/teams.csv', package = "kaggleNCAA"))
 tourney_compact_results <- data.table::fread(system.file('kaggle_data/tourney_compact_results.csv', package = "kaggleNCAA"))
@@ -10,6 +13,13 @@ tourney_seeds <- data.table::fread(system.file('kaggle_data/tourney_seeds.csv', 
 tourney_slots <- data.table::fread(system.file('kaggle_data/tourney_slots.csv', package = "kaggleNCAA"))
 
 devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots, overwrite=TRUE)
+
+##########################################
+# Seed and slot print positions
+##########################################
+
+slot_print_positions <- data.table::fread(system.file('kaggle_data/slot_print_positions.csv', package = "kaggleNCAA"))
+seed_print_positions <- data.table::fread(system.file('kaggle_data/seed_print_positions.csv', package = "kaggleNCAA"))
 
 ##########################################
 # Assign find every possible matchup and what slot it would occur in
