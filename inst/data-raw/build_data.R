@@ -69,6 +69,17 @@ slot_tree <- slot_tree[,list(season, slot, next_slot)]
 all_slots <- merge(all_slots, slot_tree, by = c('season', 'slot'), all.x=TRUE)
 
 ##########################################
+# ID playin games
+##########################################
+team_playins <- all_slots[round == 0, list(season, team_1, team_1_playedin=1L)]
+opp_playins  <- all_slots[round == 0, list(season, team_2, team_2_playedin=1L)]
+all_slots <- merge(all_slots, team_playins, by=c('season', 'team_1'), all.x=TRUE)
+all_slots <- merge(all_slots, opp_playins, by=c('season', 'team_2'), all.x=TRUE)
+
+all_slots[is.na(team_1_playedin), team_1_playedin := 0L]
+all_slots[is.na(team_2_playedin), team_2_playedin := 0L]
+
+##########################################
 # Save final dataset
 ##########################################
 
