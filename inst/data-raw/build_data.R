@@ -9,7 +9,7 @@ tourney_compact_results <- data.table::fread(system.file('inst/kaggle_data/tourn
 tourney_seeds <- data.table::fread(system.file('inst/kaggle_data/tourney_seeds.csv', package = "kaggleNCAA"))
 tourney_slots <- data.table::fread(system.file('inst/kaggle_data/tourney_slots.csv', package = "kaggleNCAA"))
 
-devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots)
+devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots, overwrite=TRUE)
 
 ##########################################
 # Assign find every possible matchup and what slot it would occur in
@@ -52,8 +52,7 @@ all_slots <- all_slots[first_matchup==TRUE,]
 all_slots[,first_matchup := NULL]
 
 #Cleanup final dataset
-data.table::setnames(all_slots, c('seed_1', 'seed_2', 'team_1', 'team_2'), c('wseed', 'lseed', 'wteam', 'lteam'))
-all_slots <- all_slots[wteam != lteam,]
+all_slots <- all_slots[team_1 != team_2,]
 
 ##########################################
 # Find next slot for each slot
@@ -74,4 +73,4 @@ all_slots <- merge(all_slots, slot_tree, by = c('season', 'slot'), all.x=TRUE)
 ##########################################
 
 data.table::setkeyv(all_slots, c('season', 'slot'))
-devtools::use_data(all_slots)
+devtools::use_data(all_slots, overwrite=TRUE)
