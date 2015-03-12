@@ -13,4 +13,3 @@ Depends:
 Suggests:
     testthat
 License: MIT + file LICENSE
-VignetteBuilder: knitr
