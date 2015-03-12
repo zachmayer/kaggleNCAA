@@ -70,6 +70,33 @@ NULL
 #' @keywords data
 NULL
 
+#' tourney_compact_results.csv from Kaggle
+#'
+#' @name tourney_compact_results
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @keywords data
+NULL
+
+#' regular_season_detailed_results.csv from Kaggle
+#'
+#' @name regular_season_detailed_results
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @keywords data
+NULL
+
+#' regular_season_compact_results.csv from Kaggle
+#'
+#' @name regular_season_compact_results
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @keywords data
+NULL
+
 #' Printing positions for each slot in the tournament.  This is for generating
 #' a printable bracket.
 #'

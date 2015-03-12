@@ -6,11 +6,17 @@
 \title{tourney_compact_results.csv from Kaggle}
 \description{
 tourney_compact_results.csv from Kaggle
+
+tourney_compact_results.csv from Kaggle
 }
 \author{
 Zach Mayer \email{zach.mayer@gmail.com}
+
+Zach Mayer \email{zach.mayer@gmail.com}
 }
 \references{
+\url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+
 \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
 }
 \keyword{data}
