@@ -11,5 +11,8 @@ Description: Creates an NCAA bracekt based on a simulated tournament.
 Depends:
     R (>= 3.1.0)
 Suggests:
-    testthat
+    testthat,
+    devtools,
+    reshape2
 License: MIT + file LICENSE
+Imports: data.table
