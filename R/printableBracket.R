@@ -20,10 +20,23 @@ printableBracket <- function(tourney){
   data('tourney_seeds', package='kaggleNCAA', envir=environment())
   data('teams', package='kaggleNCAA', envir=environment())
 
+  #Checks
   year <- sort(unique(tourney$season))
   stopifnot(length(year)==1)
 
+  #Subset seeds current year
   tourney_seeds <- tourney_seeds[season == year,]
+
+  #Walk backwards from the championship and choose a single tournament outcome
+  tourney[, slot_int := as.integer(slot)]
+  all_slots <- tourney[,sort(unique(slot_int))]
+  for(s in all_slots){
+
+    keep <- tourney[slot_int == s, winner[1]]
+    prior_slots <- tourney[winner == keep & slot_int >= s,]
+
+    tourney <- tourney[winner == keep | !(slot_int %in% prior_slots$slot_int),]
+  }
 
   #Add team names
   setnames(teams, 'team_id', 'team')
