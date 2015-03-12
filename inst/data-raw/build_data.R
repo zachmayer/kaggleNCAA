@@ -3,11 +3,11 @@
 rm(list=ls(all=TRUE))
 
 #Load Kaggle Data
-sample_submission <- data.table::fread(system.file('inst/kaggle_data/teams.csv', package = "kaggleNCAA"))
-teams <- data.table::fread(system.file('inst/kaggle_data/teams.csv', package = "kaggleNCAA"))
-tourney_compact_results <- data.table::fread(system.file('inst/kaggle_data/tourney_compact_results.csv', package = "kaggleNCAA"))
-tourney_seeds <- data.table::fread(system.file('inst/kaggle_data/tourney_seeds.csv', package = "kaggleNCAA"))
-tourney_slots <- data.table::fread(system.file('inst/kaggle_data/tourney_slots.csv', package = "kaggleNCAA"))
+sample_submission <- data.table::fread(system.file('kaggle_data/teams.csv', package = "kaggleNCAA"))
+teams <- data.table::fread(system.file('kaggle_data/teams.csv', package = "kaggleNCAA"))
+tourney_compact_results <- data.table::fread(system.file('kaggle_data/tourney_compact_results.csv', package = "kaggleNCAA"))
+tourney_seeds <- data.table::fread(system.file('kaggle_data/tourney_seeds.csv', package = "kaggleNCAA"))
+tourney_slots <- data.table::fread(system.file('kaggle_data/tourney_slots.csv', package = "kaggleNCAA"))
 
 devtools::use_data(sample_submission, teams, tourney_compact_results, tourney_seeds, tourney_slots, overwrite=TRUE)
 
@@ -80,8 +80,16 @@ all_slots[is.na(team_1_playedin), team_1_playedin := 0L]
 all_slots[is.na(team_2_playedin), team_2_playedin := 0L]
 
 ##########################################
+# Specify a slot ordering
+##########################################
+slot_order <- unique(all_slots[,list(round, slot)])[order(round, slot, decreasing=TRUE),slot]
+all_slots[,slot := factor(slot, levels=slot_order)]
+all_slots[,next_slot := factor(next_slot, levels=slot_order)]
+all_slots[,next_slot := addNA(next_slot)]
+
+##########################################
 # Save final dataset
 ##########################################
 
-data.table::setkeyv(all_slots, c('season', 'slot', 'seed_1', 'seed_2'))
+data.table::setkeyv(all_slots, c('season', 'team_1', 'team_2'))
 devtools::use_data(all_slots, overwrite=TRUE)
