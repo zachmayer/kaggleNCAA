@@ -5,7 +5,18 @@
 Kaggle NCAA Bracket Simulator
 =============================
 
-Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup)
+Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup). Install the package with:
+
+``` {.r}
+devtools::install_github('zachmayer/kaggleNCAA')
+```
+
+    ## Downloading github repo zachmayer/kaggleNCAA@master
+    ## Installing kaggleNCAA
+    ## '/Library/Frameworks/R.framework/Resources/bin/R' --vanilla CMD INSTALL  \
+    ##   '/private/var/folders/cn/s_ld8cnn5px9pkf47p_k5hb00000gp/T/RtmpeYTLLM/devtoolsd24f1460ca53/zachmayer-kaggleNCAA-7bcd610'  \
+    ##   --library='/Library/Frameworks/R.framework/Versions/3.1/Resources/library'  \
+    ##   --install-tests
 
 ``` {.r}
 library('kaggleNCAA')
@@ -16,4 +27,4 @@ bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
 
-![](README-unnamed-chunk-2-1.png)
+![](README-bracket-1.png)

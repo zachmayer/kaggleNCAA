@@ -10,7 +10,10 @@ output:
 [![Coverage Status](https://coveralls.io/repos/zachmayer/kaggleNCAA/badge.svg?branch=master)](https://coveralls.io/r/zachmayer/kaggleNCAA?branch=master)
 
 #Kaggle NCAA Bracket Simulator
-Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup)
+Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup).  Install the package with:
+```{r, echo = TRUE}
+devtools::install_github('zachmayer/kaggleNCAA')
+```
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -20,7 +23,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
+```{r bracket, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
 library('kaggleNCAA')
 f <- system.file('kaggle_data/sample_submission_2015_prelim_seed.csv', package = "kaggleNCAA", mustWork=TRUE)
 dat <- parseBracket(f)
