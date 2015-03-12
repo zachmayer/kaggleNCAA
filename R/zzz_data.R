@@ -79,3 +79,11 @@ NULL
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
 #' @keywords data
 NULL
+
+#' Prelim 2015 prediction baseline
+#'
+#' @name sample_submission_seed_2015
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @keywords data
+NULL

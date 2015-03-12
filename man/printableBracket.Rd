@@ -4,10 +4,12 @@
 \alias{printableBracket}
 \title{Generate a printable NCAA bracket}
 \usage{
-printableBracket(bracket)
+printableBracket(bracket, add_seed = TRUE)
 }
 \arguments{
 \item{bracket}{A bracket to print off}
+
+\item{add_seed}{Add the team's seed in parenthesis}
 }
 \description{
 Given an NCAA tournament bracket (a list of slots and who won

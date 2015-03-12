@@ -5,19 +5,23 @@
 #' off.
 #'
 #' @param bracket A bracket to print off
+#' @param add_seed Add the team's seed in parenthesis
 #' @return NULL
-#' @importFrom data.table setnames
+#' @importFrom data.table setnames copy
 #' @export
 #' @references
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12775/printable-bracket-for-r}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/forums/t/12627/simulating-the-tournament}
 #' \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 #' \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
-printableBracket <- function(bracket){
+printableBracket <- function(bracket, add_seed=TRUE){
   data('seed_print_positions', package='kaggleNCAA', envir=environment())
   data('slot_print_positions', package='kaggleNCAA', envir=environment())
   data('tourney_seeds', package='kaggleNCAA', envir=environment())
   data('teams', package='kaggleNCAA', envir=environment())
+
+  #Deep copy to avoid updating data
+  bracket <- copy(bracket)
 
   #Checks
   year <- sort(unique(bracket$season))
@@ -31,6 +35,15 @@ printableBracket <- function(bracket){
   setnames(bracket, 'winner', 'team')
   bracket_seeds <- merge(tourney_seeds, teams, by='team', all.x=TRUE)
   bracket <- merge(bracket, teams, by='team', all.x=TRUE)
+
+  #Parse seeds
+  if(add_seed){
+    bracket_seeds[,seed_int := as.integer(substr(seed, 2, 3))]
+    bracket <- merge(bracket, bracket_seeds[,list(team, seed_int)], by='team')
+
+    bracket_seeds[,team_name := paste0(team_name, '-(', seed_int, ')')]
+    bracket[,team_name := paste0(team_name, '-(', seed_int, ')')]
+  }
 
   #Add printing positions
   bracket_seeds <- merge(bracket_seeds, seed_print_positions, by=c('seed'), all.x=TRUE)

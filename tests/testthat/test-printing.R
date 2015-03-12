@@ -4,6 +4,8 @@ test_that("We can print a tourney bracket", {
   year = sort(unique(dat$season))[1]
   sim <- simTourney(dat, 1, year, progress=FALSE)
   bracket <- extractBracket(sim)
-  res <- printableBracket(bracket)
+  res <- printableBracket(bracket, add_seed=FALSE)
+  expect_null(res)
+  res <- printableBracket(bracket, add_seed=TRUE)
   expect_null(res)
 })
