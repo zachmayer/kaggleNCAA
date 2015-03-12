@@ -51,7 +51,7 @@ simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
   all_possible_slots <- unique(rbind(all_possible_slots_team_1, all_possible_slots_team_2))
   sims <- merge(all_possible_slots, sims, all.x=TRUE, by=c('slot', 'winner'))
   sims[is.na(count), count := 0L]
-  sims[, prob := count / n]
+  sims[, prob := count / N]
   sims <- sims[order(count, decreasing=TRUE)]
 
   return(sims)
