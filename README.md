@@ -11,6 +11,8 @@ Simulate the NCAA tournament based on a kaggle-format bracket (with predictions 
 devtools::install_github('zachmayer/kaggleNCAA')
 ```
 
+Then simulate a tournament and print a bracket:
+
 ``` {.r}
 set.seed(1)
 library('kaggleNCAA')
@@ -21,4 +23,11 @@ bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
 
-![](README-bracket-1.png)
+![](README-sim_bracket-1.png) If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
+
+``` {.r}
+bracket <- walkTourney(dat, year=2015)
+printableBracket(bracket)
+```
+
+![](README-walk_bracket-1.png) Note in this case that the probabilities associated with the team making it to a given round will be incorrect

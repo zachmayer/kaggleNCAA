@@ -13,7 +13,7 @@
 #' @importFrom data.table := rbindlist
 #' @importFrom pbapply pblapply
 #' @export
-simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
+simTourney <- function(preds, N=1000, year=2015, progress=TRUE){
   data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -37,7 +37,11 @@ simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
   }
 
   #Run the simulation
-  sims_list <- apply_fun(1:N, function(x) sim_tourney_internal(preds))
+  sims_list <- apply_fun(1:N, function(x) {
+    preds[, rand := runif(.N),]
+    preds[, winner := ifelse(pred > rand, team_1, team_2)]
+    sim_tourney_internal(preds)
+    })
 
   #Aggregate results
   sims <- rbindlist(sims_list)
@@ -59,6 +63,59 @@ simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
   return(sims)
 }
 
+#' @title "Walk" an NCAA tournament, from round 0 to round 6
+#'
+#' @description Given a parsed NCAA bracket, walk forward through each round
+#' to generate a bracket
+#'
+#' @details If your probabilities are transative, there's no reason to
+#' simulate the tournament.  You can just walk forward to generate a bracket
+#' @note Much faster than simulation
+#' @param preds Predicted outcomes for ALL possible matchups
+#' @param year The year of the tournament.  Used to subset preds, if preds
+#' contain multiple seasons
+#' @return a data.table
+#' @importFrom data.table := setkeyv
+#' @export
+walkTourney <- function(preds, year=2015){
+  data('all_slots', package='kaggleNCAA', envir=environment())
+
+  #Subset the data
+  preds <- preds[season==year,]
+
+  #Join slots to the predictions
+  n1 <- nrow(preds)
+  preds <- merge(preds, all_slots, by=c('season', 'team_1', 'team_2'))
+  stopifnot(n1 == nrow(preds))
+
+  #Randomly break ties
+  small_num <- 1e-6
+  preds[, pred := pred + runif(.N, min = -1 * small_num, max = small_num)]
+
+  #Decide a winner
+  preds[, winner := ifelse(pred > .5, team_1, team_2)]
+
+  #Run the simulation
+  preds[, keep := 1L]
+  sims <- sim_tourney_internal(preds)
+
+  #Add each game's probs
+  sims <- merge(sims, preds[,list(team_1, team_2, pred)], by=c('team_1', 'team_2'), all.x=TRUE)
+  sims[,pred := ifelse(team_1 == winner, pred, 1-pred)]
+
+  #Aggregate results
+  setkeyv(sims, c('slot', 'winner'))
+  sims[, count := 1]
+  setkeyv(sims, c('winner', 'round'))
+  sims[, prob := cumprod(pred), by=c('winner')]
+
+  #Add year and return
+  sims[, season := year]
+  setkeyv(sims, c('slot', 'winner'))
+  return(sims)
+
+}
+
 #' @title Function to do a single tournament simulation
 #'
 #' @description Chooses a random number.  If pred > r, the lower id team wins.
@@ -69,8 +126,6 @@ simTourney <- function(preds, N=1000, year=2014, progress=TRUE){
 #' @importFrom data.table data.table
 sim_tourney_internal <- function(preds){
 
-  preds[,rand := runif(.N),]
-  preds[, winner := ifelse(pred > rand, team_1, team_2)]
   all_rounds <- sort(unique(preds$round))
 
   #Evaluate the playin rounds

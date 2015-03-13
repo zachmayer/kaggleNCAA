@@ -4,7 +4,7 @@
 \alias{simTourney}
 \title{Simulate the NCAA tournament}
 \usage{
-simTourney(preds, N = 1000, year = 2014, progress = TRUE)
+simTourney(preds, N = 1000, year = 2015, progress = TRUE)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
