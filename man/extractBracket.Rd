@@ -4,10 +4,14 @@
 \alias{extractBracket}
 \title{Extract a best bracket from a simulation result}
 \usage{
-extractBracket(sim)
+extractBracket(sim, restrict = TRUE)
 }
 \arguments{
 \item{sim}{The outcome of a simTourney run}
+
+\item{restrict}{Restrict the brakcet to realistic result: if a team wins a
+given game, they must also have won all prior games.  Set to FALSE for
+impossible, but still very interesting brackets}
 }
 \value{
 a data.table

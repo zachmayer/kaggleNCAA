@@ -8,23 +8,34 @@
 #' championship game, and assumes that team won all prior games.  As such, it
 #' works backwards to determine a single result from a simulation.
 #' @param sim The outcome of a simTourney run
+#' @param restrict Restrict the brakcet to realistic result: if a team wins a
+#' given game, they must also have won all prior games.  Set to FALSE for
+#' impossible, but still very interesting brackets
 #' @return a data.table
 #' @importFrom data.table copy
 #' @export
-extractBracket <- function(sim){
+extractBracket <- function(sim, restrict=TRUE){
 
   #Make a deep copy, so we don't update the original data
   dat <- copy(sim)
+  dat[, slot_int := as.integer(slot)]
 
   #Walk backwards from the championship and choose a single tournament outcome
-  dat[, slot_int := as.integer(slot)]
-  all_slots <- dat[,sort(unique(slot_int))]
-  for(s in all_slots){
+  if(restrict){
+    all_slots <- dat[,sort(unique(slot_int))]
+    for(s in all_slots){
 
-    keep <- dat[slot_int == s, winner[1]]
-    prior_slots <- dat[winner == keep & slot_int >= s,]
+      keep <- dat[slot_int == s, winner[1]]
+      prior_slots <- dat[winner == keep & slot_int >= s,]
 
-    dat <- dat[winner == keep | !(slot_int %in% prior_slots$slot_int),]
+      dat <- dat[winner == keep | !(slot_int %in% prior_slots$slot_int),]
+    }
+  } else {
+    dat[, prob := prob + runif(.N)/1e12]
+    dat[, res := as.integer(prob == max(prob)), by='slot']
+    dat <- dat[res == 1,]
+    dat[, res := NULL]
   }
+
   return(dat)
 }
