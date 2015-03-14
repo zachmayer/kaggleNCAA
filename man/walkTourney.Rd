@@ -4,13 +4,16 @@
 \alias{walkTourney}
 \title{"Walk" an NCAA tournament, from round 0 to round 6}
 \usage{
-walkTourney(preds, year = 2015)
+walkTourney(preds, year = 2015, upset_bias = 0)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
 
 \item{year}{The year of the tournament.  Used to subset preds, if preds
 contain multiple seasons}
+
+\item{upset_bias}{If you want more upsets in your bracket, a little upset
+bias will give close games to the underdog.}
 }
 \value{
 a data.table

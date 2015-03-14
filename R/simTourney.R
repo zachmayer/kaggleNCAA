@@ -9,11 +9,13 @@
 #' @param year The year of the tournament.  Used to subset preds, if preds
 #' contain multiple seasons
 #' @param progress If TRUE, a progress bar will be printed
+#' @param upset_bias If you want more upsets in your bracket, a little upset
+#' bias will give close games to the underdog.
 #' @return a data.table
 #' @importFrom data.table := rbindlist
 #' @importFrom pbapply pblapply
 #' @export
-simTourney <- function(preds, N=1000, year=2015, progress=TRUE){
+simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
   data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -24,10 +26,20 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE){
   preds <- merge(preds, all_slots, by=c('season', 'team_1', 'team_2'))
   stopifnot(n1 == nrow(preds))
 
+  #Determine seeds
+  preds[, seed_1_int := as.integer(substr(seed_1, 2, 3))]
+  preds[, seed_2_int := as.integer(substr(seed_2, 2, 3))]
+
   #Add some columns for tracking the simulation
   preds[, rand := runif(.N),]
   preds[, winner := ifelse(pred > rand, team_1, team_2)]
   preds[, keep := 1L]
+
+  #Add upset bias
+  if(upset_bias!=0){
+    preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+    preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
+  }
 
   #Decide on progress bars
   if(progress){
@@ -39,6 +51,10 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE){
   #Run the simulation
   sims_list <- apply_fun(1:N, function(x) {
     preds[, rand := runif(.N),]
+    if(upset_bias!=0){
+      preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+      preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
+    }
     preds[, winner := ifelse(pred > rand, team_1, team_2)]
     sim_tourney_internal(preds)
     })
@@ -74,10 +90,12 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE){
 #' @param preds Predicted outcomes for ALL possible matchups
 #' @param year The year of the tournament.  Used to subset preds, if preds
 #' contain multiple seasons
+#' @param upset_bias If you want more upsets in your bracket, a little upset
+#' bias will give close games to the underdog.
 #' @return a data.table
 #' @importFrom data.table := setkeyv
 #' @export
-walkTourney <- function(preds, year=2015){
+walkTourney <- function(preds, year=2015, upset_bias=0){
   data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -88,12 +106,23 @@ walkTourney <- function(preds, year=2015){
   preds <- merge(preds, all_slots, by=c('season', 'team_1', 'team_2'))
   stopifnot(n1 == nrow(preds))
 
+  #Determine seeds
+  preds[, seed_1_int := as.integer(substr(seed_1, 2, 3))]
+  preds[, seed_2_int := as.integer(substr(seed_2, 2, 3))]
+
+  #Add upset bias
+  preds[, rand := .5]
+  if(upset_bias!=0){
+    preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+    preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
+  }
+
   #Randomly break ties
   small_num <- 1e-6
   preds[, pred := pred + runif(.N, min = -1 * small_num, max = small_num)]
 
   #Decide a winner
-  preds[, winner := ifelse(pred > .5, team_1, team_2)]
+  preds[, winner := ifelse(pred > rand, team_1, team_2)]
 
   #Run the simulation
   preds[, keep := 1L]
@@ -113,7 +142,6 @@ walkTourney <- function(preds, year=2015){
   sims[, season := year]
   setkeyv(sims, c('slot', 'winner'))
   return(sims)
-
 }
 
 #' @title Function to do a single tournament simulation
