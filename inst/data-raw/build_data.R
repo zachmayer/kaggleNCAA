@@ -22,11 +22,11 @@ sample_submission <- data.table::fread(system.file('kaggle_data/sample_submissio
 # Add 2015 data
 ##########################################
 
-sample_submission_seed_2015 <- data.table::fread(system.file('kaggle_data/sample_submission_2015_prelim_seed.csv', package = "kaggleNCAA"))
-regular_season_compact_results_2015_prelim <- data.table::fread(system.file('kaggle_data/regular_season_compact_results_2015_prelim.csv', package = "kaggleNCAA"))
-regular_season_detailed_results_2015_prelim <- data.table::fread(system.file('kaggle_data/regular_season_detailed_results_2015_prelim.csv', package = "kaggleNCAA"))
-tourney_seeds_2015 <- data.table::fread(system.file('kaggle_data/tourney_seeds_2015_prelim.csv', package = "kaggleNCAA"))
-tourney_slots_2015 <- data.table::fread(system.file('kaggle_data/tourney_slots_2015_prelim.csv', package = "kaggleNCAA"))
+sample_submission_seed_2015 <- data.table::fread(system.file('kaggle_data/sample_submission_2015.csv', package = "kaggleNCAA"))
+regular_season_compact_results_2015_prelim <- data.table::fread(system.file('kaggle_data/regular_season_compact_results_2015.csv', package = "kaggleNCAA"))
+regular_season_detailed_results_2015_prelim <- data.table::fread(system.file('kaggle_data/regular_season_detailed_results_2015.csv', package = "kaggleNCAA"))
+tourney_seeds_2015 <- data.table::fread(system.file('kaggle_data/tourney_seeds_2015.csv', package = "kaggleNCAA"))
+tourney_slots_2015 <- data.table::fread(system.file('kaggle_data/tourney_slots_2015.csv', package = "kaggleNCAA"))
 
 tourney_seeds <- rbind(tourney_seeds, tourney_seeds_2015)
 tourney_slots <- rbind(tourney_slots, tourney_slots_2015)
