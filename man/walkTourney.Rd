@@ -4,8 +4,7 @@
 \alias{walkTourney}
 \title{"Walk" an NCAA tournament, from round 0 to round 6}
 \usage{
-walkTourney(preds, year = 2015, upset_bias = 0,
-  seed_diff_upset_multiple = 0)
+walkTourney(preds, year = 2015, upset_bias = 0)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
@@ -15,8 +14,6 @@ contain multiple seasons}
 
 \item{upset_bias}{If you want more upsets in your bracket, a little upset
 bias will give close games to the underdog.}
-
-\item{seed_diff_upset_multiple}{How much to multiply the upset bias by, based on the seed difference.}
 }
 \value{
 a data.table

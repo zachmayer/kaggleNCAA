@@ -11,12 +11,11 @@
 #' @param progress If TRUE, a progress bar will be printed
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
-#' @param seed_diff_upset_multiple How much to multiply the upset bias by, based on the seed difference.
 #' @return a data.table
 #' @importFrom data.table := rbindlist
 #' @importFrom pbapply pblapply
 #' @export
-simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0, seed_diff_upset_multiple=0){
+simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
   data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -30,7 +29,6 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0, se
   #Determine seeds
   preds[, seed_1_int := as.integer(substr(seed_1, 2, 3))]
   preds[, seed_2_int := as.integer(substr(seed_2, 2, 3))]
-  preds[, seed_diff := abs(seed_1_int - seed_2_int)]
 
   #Add some columns for tracking the simulation
   preds[, rand := runif(.N),]
@@ -39,8 +37,8 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0, se
 
   #Add upset bias
   if(upset_bias!=0){
-    preds[seed_1_int > seed_2_int, rand := rand - upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
-    preds[seed_1_int < seed_2_int, rand := rand + upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
+    preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+    preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
   }
 
   #Decide on progress bars
@@ -54,8 +52,8 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0, se
   sims_list <- apply_fun(1:N, function(x) {
     preds[, rand := runif(.N),]
     if(upset_bias!=0){
-      preds[seed_1_int > seed_2_int, rand := rand - upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
-      preds[seed_1_int < seed_2_int, rand := rand + upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
+      preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+      preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
     }
     preds[, winner := ifelse(pred > rand, team_1, team_2)]
     sim_tourney_internal(preds)
@@ -94,11 +92,10 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0, se
 #' contain multiple seasons
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
-#' @param seed_diff_upset_multiple How much to multiply the upset bias by, based on the seed difference.
 #' @return a data.table
 #' @importFrom data.table := setkeyv
 #' @export
-walkTourney <- function(preds, year=2015, upset_bias=0, seed_diff_upset_multiple=0){
+walkTourney <- function(preds, year=2015, upset_bias=0){
   data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -112,13 +109,12 @@ walkTourney <- function(preds, year=2015, upset_bias=0, seed_diff_upset_multiple
   #Determine seeds
   preds[, seed_1_int := as.integer(substr(seed_1, 2, 3))]
   preds[, seed_2_int := as.integer(substr(seed_2, 2, 3))]
-  preds[, seed_diff := abs(seed_1_int - seed_2_int)]
 
   #Add upset bias
   preds[, rand := .5]
   if(upset_bias!=0){
-    preds[seed_1_int > seed_2_int, rand := rand - upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
-    preds[seed_1_int < seed_2_int, rand := rand + upset_bias * (1 + seed_diff_upset_multiple * seed_diff)]
+    preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
+    preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
   }
 
   #Randomly break ties
