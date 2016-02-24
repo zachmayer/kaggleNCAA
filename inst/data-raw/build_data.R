@@ -76,6 +76,12 @@ devtools::use_data(
   overwrite=TRUE)
 
 ##########################################
+# Extra data
+##########################################
+
+spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
+
+##########################################
 # Seed and slot print positions
 ##########################################
 seed_print_positions <- fread('inst/kaggle_data/seed_print_positions.csv')
