@@ -1,4 +1,4 @@
-team_id,team_name
+Team_Id,Team_Name
 1101,Abilene Chr
 1102,Air Force
 1103,Akron
@@ -308,7 +308,7 @@ team_id,team_name
 1407,Troy
 1408,Tulane
 1409,Tulsa
-1410,TX Pan American
+1410,UTRGV
 1411,TX Southern
 1412,UAB
 1413,UC Davis
@@ -341,7 +341,7 @@ team_id,team_name
 1440,VMI
 1441,W Carolina
 1442,W Illinois
-1443,W Kentucky
+1443,WKU
 1444,W Michigan
 1445,W Salem St
 1446,W Texas A&M

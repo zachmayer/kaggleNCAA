@@ -1,6 +1,6 @@
 
 test_that("We can extract a bracket from a simulation", {
-  f <- system.file('kaggle_data/sample_submission_2015.csv', package = "kaggleNCAA", mustWork=TRUE)
+  f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mustWork=TRUE)
   dat <- parseBracket(f)
   year = sort(unique(dat$season))[1]
   sim <- simTourney(dat, 1, year, progress=FALSE)
