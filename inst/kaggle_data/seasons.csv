@@ -1,4 +1,4 @@
-season,dayzero,regionW,regionX,regionY,regionZ
+Season,Dayzero,Regionw,Regionx,Regiony,Regionz
 1985,10/29/1984,East,West,Midwest,Southeast
 1986,10/28/1985,East,Midwest,Southeast,West
 1987,10/27/1986,East,Southeast,Midwest,West
@@ -30,3 +30,4 @@ season,dayzero,regionW,regionX,regionY,regionZ
 2013,11/05/2012,East,South,Midwest,West
 2014,11/04/2013,East,South,Midwest,West
 2015,11/03/2014,East,South,Midwest,West
+2016,11/02/2015,East,South,Midwest,West
