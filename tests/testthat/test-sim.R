@@ -1,6 +1,6 @@
 
 test_that("We can simulate a tourney", {
-  f <- system.file('kaggle_data/sample_submission_2015.csv', package = "kaggleNCAA", mustWork=TRUE)
+  f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mustWork=TRUE)
   dat <- parseBracket(f)
 
   #Test all years without progress bar
@@ -18,7 +18,7 @@ test_that("We can simulate a tourney", {
 })
 
 test_that("We can walk a tourney", {
-  f <- system.file('kaggle_data/sample_submission_2015.csv', package = "kaggleNCAA", mustWork=TRUE)
+  f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mustWork=TRUE)
   dat <- parseBracket(f)
 
   #Test all years without progress bar
@@ -28,5 +28,4 @@ test_that("We can walk a tourney", {
     expect_more_than(nrow(sim), 63)
     expect_is(sim, 'data.table')
   }
-
 })

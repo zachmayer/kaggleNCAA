@@ -10,11 +10,12 @@
 #' @importFrom data.table fread setcolorder setkeyv :=
 #' @export
 #' @examples
-#' f <- system.file('kaggle_data/sample_submission.csv', package = "kaggleNCAA", mustWork=TRUE)
+#' f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mustWork=TRUE)
 #' dat <- parseBracket(f)
 #' head(dat)
 parseBracket <- function(f){
   dat <- fread(f)
+  setnames(dat, tolower(names(dat)))
   dat[, id := strsplit(dat$id, '_')]
   dat[,season := as.integer(sapply(id, '[', 1))]
   dat[,team_1 := as.integer(sapply(id, '[', 2))]

@@ -3,7 +3,7 @@
 #' @name all_slots
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -12,7 +12,7 @@ NULL
 #' @name sample_submission
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -21,7 +21,7 @@ NULL
 #' @name teams
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -30,7 +30,7 @@ NULL
 #' @name tourney_compact_results
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -39,7 +39,7 @@ NULL
 #' @name tourney_seeds
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -48,7 +48,7 @@ NULL
 #' @name tourney_slots
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -57,7 +57,7 @@ NULL
 #' @name seasons
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -66,7 +66,7 @@ NULL
 #' @name tourney_detailed_results
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -75,7 +75,7 @@ NULL
 #' @name tourney_compact_results
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -84,7 +84,7 @@ NULL
 #' @name regular_season_detailed_results
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 
@@ -93,7 +93,7 @@ NULL
 #' @name regular_season_compact_results
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{http://www.kaggle.com/c/march-machine-learning-mania-2015/data}
+#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 #' @keywords data
 NULL
 

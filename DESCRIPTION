@@ -1,19 +1,21 @@
 Package: kaggleNCAA
 Type: Package
 Title: Simulate the NCAA tournament
-Version: 0.0.0.9200
-Date: 2015-03-12
+Version: 0.0.2.900
+Date: 2015-02-34
 Authors@R: person(c("Zachary", "A."), "Mayer", role = c("aut", "cre"),
     email = "zach.mayer@gmail.com")
 URL: https://github.com/zachmayer/kaggle_ncaa_sim
 BugReports: https://github.com/zachmayer/kaggle_ncaa_sim/issues
 Description: Creates an NCAA bracekt based on a simulated tournament.
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.2.0)
 Suggests:
     testthat,
     devtools,
     reshape2
 License: MIT + file LICENSE
-Imports: data.table,
+Imports:
+    data.table,
     pbapply
+RoxygenNote: 5.0.1
