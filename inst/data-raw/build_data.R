@@ -19,7 +19,7 @@ tourney_detailed_results <- fread('inst/kaggle_data/Prelim_TourneyDetailedResult
 tourney_seeds <- fread('inst/kaggle_data/Prelim_TourneySeeds.csv')
 tourney_slots <- fread('inst/kaggle_data/Prelim_TourneySlots.csv')
 
-sample_submission <- fread('inst/kaggle_data/SampleSubmission.csv')
+sample_submission <- fread('inst/kaggle_data/Prelim_SubmissionSeed.csv')
 
 use_data(
   sample_submission,
