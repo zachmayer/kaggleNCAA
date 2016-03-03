@@ -66,6 +66,8 @@ devtools::use_data(
 ##########################################
 
 spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
+spreads[, game_date := as.Date(game_date)]
+devtools::use_data(spreads, overwrite=TRUE)
 
 ##########################################
 # Seed and slot print positions
