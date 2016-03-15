@@ -3,6 +3,7 @@
 rm(list=ls(all=TRUE))
 library(data.table)
 library(devtools)
+library(geosphere)
 
 ##########################################
 # Base Kaggle Data
@@ -35,35 +36,55 @@ names(sample_submission) <- tolower(names(sample_submission))
 # Extra data
 ##########################################
 
-geo <- fread('inst/kaggle_data/TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
+#Team geos
 geo_team <- fread('inst/kaggle_data/TeamGeog.csv')
+teams <- merge(teams, geo_team, by=c('team_id'), all.x=TRUE)
+
+#Tourney geo
+geo_tourney <- fread('inst/kaggle_data/TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
+setnames(geo_tourney, c('lat', 'lng'), c('host_lat', 'host_lng'))
+tourney_slots <- merge(tourney_slots, geo_tourney, by=c('season', 'slot'), all.x=TRUE)
+
+#Spreads (MISSING 2016!)
 spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
 
-teams <- merge(teams, geo_team, by=c('team_id'), all.x=TRUE)
-tourney_slots <- merge(tourney_slots, geo, by=c('season', 'slot'), all.x=TRUE)
+#ADD: Massey Ordinals
 
 ##########################################
-# Save data
+# Calculate distance for regular season games
 ##########################################
 
-use_data(
-  sample_submission,
-  teams,
-  tourney_compact_results,
-  tourney_seeds,
-  tourney_slots,
-  seasons,
-  tourney_detailed_results,
+wdist = teams[,list(wteam=team_id, wlat=lat, wlng=lng)]
+ldist = teams[,list(lteam=team_id, llat=lat, llng=lng)]
+
+regular_season_compact_results = merge(
   regular_season_compact_results,
-  regular_season_detailed_results,
-  overwrite=TRUE)
+  wdist, by='wteam', all.x=TRUE
+)
+
+regular_season_compact_results = merge(
+  regular_season_compact_results,
+  ldist, by='lteam', all.x=TRUE
+)
+
+regular_season_compact_results[, dist := distCosine(cbind(wlng, wlat), cbind(llng, llat)) / 1609.34]
+regular_season_compact_results[wloc == 'N', dist := NA]
+regular_season_compact_results[wloc == 'A', wdist := dist]
+regular_season_compact_results[wloc == 'H', wdist := 0]
+regular_season_compact_results[wloc == 'A', ldist := 0]
+regular_season_compact_results[wloc == 'H', ldist := dist]
+
+#Use median distance for neutral game
+med_dist <- regular_season_compact_results[,median(dist, na.rm=TRUE)]
+regular_season_compact_results[is.na(wdist), wdist := med_dist]
+regular_season_compact_results[is.na(ldist), ldist := med_dist]
+regular_season_compact_results[, dist := NULL]
 
 ##########################################
 # Seed and slot print positions
 ##########################################
 seed_print_positions <- fread('inst/kaggle_data/seed_print_positions.csv')
 slot_print_positions <- fread('inst/kaggle_data/slot_print_positions.csv')
-devtools::use_data(seed_print_positions, slot_print_positions, overwrite=TRUE)
 
 ##########################################
 # Assign find every possible matchup and what slot it would occur in
@@ -142,14 +163,59 @@ all_slots[,next_slot := factor(next_slot, levels=slot_order)]
 all_slots[,next_slot := addNA(next_slot)]
 
 ##########################################
-# Add geo
+# Add geo to all slots
 ##########################################
 
-all_slots <- merge(all_slots, geo, by=c('season', 'slot'), all.x=TRUE)
+dist_1 = teams[,list(team_1=team_id, lat_1=lat, lng_1=lng)]
+dist_2 = teams[,list(team_2=team_id, lat_2=lat, lng_2=lng)]
+all_slots <- merge(all_slots, geo_tourney, by=c('season', 'slot'), all.x=TRUE)
+all_slots = merge(all_slots, dist_2, by='team_2')
+all_slots = merge(all_slots, dist_1, by='team_1')
+setkeyv(all_slots, c('season', 'team_1', 'team_2'))
+rm(dist_1, dist_2)
+
+all_slots[, dist_1 := distCosine(cbind(lng_1, lat_2), cbind(host_lng, host_lat)) / 1609.34]
+all_slots[, dist_2 := distCosine(cbind(lng_1, lat_2), cbind(host_lng, host_lat)) / 1609.34]
 
 ##########################################
-# Save final dataset
+# Add all-slots geo to tourney compact
 ##########################################
 
-data.table::setkeyv(all_slots, c('season', 'team_1', 'team_2'))
-devtools::use_data(all_slots, overwrite=TRUE)
+tourney_geo = all_slots[,list(
+  season,
+  wteam = team_1,
+  lteam = team_2,
+  wlat = lat_1,
+  wlng = lng_1,
+  llat = lat_2,
+  llng = lng_2,
+  wdist = dist_1,
+  ldist = dist_2)]
+
+tourney_compact_results <- merge(
+  tourney_compact_results,
+  tourney_geo,
+  by=c('season', 'wteam', 'lteam'),
+  all.x=TRUE
+)
+
+setcolorder(tourney_compact_results, names(regular_season_compact_results))
+
+##########################################
+# Save data
+##########################################
+
+use_data(
+  seed_print_positions,
+  slot_print_positions,
+  sample_submission,
+  teams,
+  tourney_compact_results,
+  tourney_seeds,
+  tourney_slots,
+  seasons,
+  tourney_detailed_results,
+  regular_season_compact_results,
+  regular_season_detailed_results,
+  all_slots,
+  overwrite=TRUE)
