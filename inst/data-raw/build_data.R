@@ -36,8 +36,10 @@ names(sample_submission) <- tolower(names(sample_submission))
 ##########################################
 
 geo <- fread('inst/kaggle_data/TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
+geo_team <- fread('inst/kaggle_data/TeamGeog.csv')
 spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
 
+teams <- merge(teams, geo_team, by=c('team_id'), all.x=TRUE)
 tourney_slots <- merge(tourney_slots, geo, by=c('season', 'slot'), all.x=TRUE)
 
 ##########################################
