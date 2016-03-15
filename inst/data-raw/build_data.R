@@ -2,12 +2,13 @@
 #Clear all existing in-RAM data
 rm(list=ls(all=TRUE))
 library(data.table)
+library(devtools)
 
 ##########################################
 # Base Kaggle Data
 ##########################################
 seasons <- fread('inst/kaggle_data/Seasons.csv')
-teams <- fread('inst/kaggle_data/teams.csv')
+teams <- fread('inst/kaggle_data/Teams.csv')
 
 regular_season_compact_results <- fread('inst/kaggle_data/RegularSeasonCompactResults.csv')
 regular_season_detailed_results <- fread('inst/kaggle_data/RegularSeasonDetailedResults.csv')
@@ -20,6 +21,29 @@ tourney_slots <- fread('inst/kaggle_data/TourneySlots.csv')
 
 sample_submission <- fread('inst/kaggle_data/SampleSubmission.csv')
 
+names(seasons) <- tolower(names(seasons))
+names(teams) <- tolower(names(teams))
+names(regular_season_compact_results) <- tolower(names(regular_season_compact_results))
+names(regular_season_detailed_results) <- tolower(names(regular_season_detailed_results))
+names(tourney_compact_results) <- tolower(names(tourney_compact_results))
+names(tourney_detailed_results) <- tolower(names(tourney_detailed_results))
+names(tourney_seeds) <- tolower(names(tourney_seeds))
+names(tourney_slots) <- tolower(names(tourney_slots))
+names(sample_submission) <- tolower(names(sample_submission))
+
+##########################################
+# Extra data
+##########################################
+
+geo <- fread('inst/kaggle_data/TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
+spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
+
+tourney_slots <- merge(tourney_slots, geo, by=c('season', 'slot'), all.x=TRUE)
+
+##########################################
+# Save data
+##########################################
+
 use_data(
   sample_submission,
   teams,
@@ -31,55 +55,6 @@ use_data(
   regular_season_compact_results,
   regular_season_detailed_results,
   overwrite=TRUE)
-
-##########################################
-# Add 2016 data
-##########################################
-
-# sample_submission_seed_2015 <- fread(system.file('kaggle_data/sample_submission_2015.csv', package = "kaggleNCAA"))
-# regular_season_compact_results_2015_prelim <- fread(system.file('kaggle_data/regular_season_compact_results_2015.csv', package = "kaggleNCAA"))
-# regular_season_detailed_results_2015_prelim <- fread(system.file('kaggle_data/regular_season_detailed_results_2015.csv', package = "kaggleNCAA"))
-# tourney_seeds_2015 <- fread(system.file('kaggle_data/tourney_seeds_2015.csv', package = "kaggleNCAA"))
-# tourney_slots_2015 <- fread(system.file('kaggle_data/tourney_slots_2015.csv', package = "kaggleNCAA"))
-#
-# tourney_seeds <- rbind(tourney_seeds, tourney_seeds_2015)
-# tourney_slots <- rbind(tourney_slots, tourney_slots_2015)
-# regular_season_compact_results <- rbind(regular_season_compact_results, regular_season_compact_results_2015_prelim)
-# regular_season_detailed_results <- rbind(regular_season_detailed_results, regular_season_detailed_results_2015_prelim)
-
-##########################################
-# Lowercase names and save
-##########################################
-
-fixnames <- function(x) tolower(names(x))
-
-names(sample_submission) <- fixnames(sample_submission)
-names(teams) <- fixnames(teams)
-names(seasons) <- fixnames(seasons)
-names(tourney_compact_results) <- fixnames(tourney_compact_results)
-names(tourney_detailed_results) <- fixnames(tourney_detailed_results)
-names(regular_season_compact_results) <- fixnames(regular_season_compact_results)
-names(tourney_detailed_results) <- fixnames(tourney_detailed_results)
-names(tourney_seeds) <- fixnames(tourney_seeds)
-names(tourney_slots) <- fixnames(tourney_slots)
-
-devtools::use_data(
-  sample_submission,
-  teams,
-  seasons,
-  tourney_compact_results,
-  tourney_detailed_results,
-  regular_season_compact_results,
-  regular_season_detailed_results,
-  tourney_seeds,
-  tourney_slots,
-  overwrite=TRUE)
-
-##########################################
-# Extra data
-##########################################
-
-spreads <- fread('inst/kaggle_data/covers_ncaab_data_mt.csv')
 
 ##########################################
 # Seed and slot print positions
