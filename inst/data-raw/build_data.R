@@ -174,8 +174,8 @@ all_slots = merge(all_slots, dist_1, by='team_1')
 setkeyv(all_slots, c('season', 'team_1', 'team_2'))
 rm(dist_1, dist_2)
 
-all_slots[, dist_1 := distCosine(cbind(lng_1, lat_2), cbind(host_lng, host_lat)) / 1609.34]
-all_slots[, dist_2 := distCosine(cbind(lng_1, lat_2), cbind(host_lng, host_lat)) / 1609.34]
+all_slots[, dist_1 := distCosine(cbind(lng_1, lat_1), cbind(host_lng, host_lat)) / 1609.34]
+all_slots[, dist_2 := distCosine(cbind(lng_2, lat_2), cbind(host_lng, host_lat)) / 1609.34]
 
 ##########################################
 # Add all-slots geo to tourney compact
