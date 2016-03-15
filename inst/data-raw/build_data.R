@@ -140,6 +140,12 @@ all_slots[,next_slot := factor(next_slot, levels=slot_order)]
 all_slots[,next_slot := addNA(next_slot)]
 
 ##########################################
+# Add geo
+##########################################
+
+all_slots <- merge(all_slots, geo, by=c('season', 'slot'), all.x=TRUE)
+
+##########################################
 # Save final dataset
 ##########################################
 
