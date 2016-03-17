@@ -158,6 +158,7 @@ all_slots[is.na(team_2_playedin), team_2_playedin := 0L]
 # Specify a slot ordering
 ##########################################
 slot_order <- unique(all_slots[,list(round, slot)])[order(round, slot, decreasing=TRUE),slot]
+
 all_slots[,slot := factor(slot, levels=slot_order)]
 all_slots[,next_slot := factor(next_slot, levels=slot_order)]
 all_slots[,next_slot := addNA(next_slot)]
@@ -204,6 +205,12 @@ setcolorder(tourney_compact_results, names(regular_season_compact_results))
 ##########################################
 # Save data
 ##########################################
+
+#set slot order for all slot objects
+slot_print_positions[,slot := factor(slot, levels=slot_order)]
+tourney_slots[,slot := factor(slot, levels=slot_order)]
+slot_print_positions[,slot := factor(slot, levels=slot_order)]
+all_slots[,slot := factor(slot, levels=slot_order)]
 
 use_data(
   seed_print_positions,
