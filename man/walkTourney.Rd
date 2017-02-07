@@ -29,4 +29,3 @@ simulate the tournament.  You can just walk forward to generate a bracket
 \note{
 Much faster than simulation
 }
-

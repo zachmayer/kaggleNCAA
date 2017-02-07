@@ -11,4 +11,3 @@ Prelim 2015 prediction baseline
 Zach Mayer \email{zach.mayer@gmail.com}
 }
 \keyword{data}
-

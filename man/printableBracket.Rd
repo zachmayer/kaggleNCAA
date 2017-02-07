@@ -24,4 +24,3 @@ off.
 \url{http://www.kaggle.com/c/march-machine-learning-mania/forums/t/7309/printable-bracket-in-r}
 \url{https://github.com/chmullig/marchmania/blob/master/bracket.R}
 }
-

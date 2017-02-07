@@ -26,4 +26,3 @@ they won all prior games.  It then picks the most likely other team in the
 championship game, and assumes that team won all prior games.  As such, it
 works backwards to determine a single result from a simulation.
 }
-

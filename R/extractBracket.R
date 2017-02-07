@@ -12,12 +12,12 @@
 #' given game, they must also have won all prior games.  Set to FALSE for
 #' impossible, but still very interesting brackets
 #' @return a data.table
-#' @importFrom data.table copy
+#' @importFrom data.table :=
 #' @export
 extractBracket <- function(sim, restrict=TRUE){
 
   #Make a deep copy, so we don't update the original data
-  dat <- copy(sim)
+  dat <- data.table::copy(sim)
   dat[, slot_int := as.integer(slot)]
 
   #Walk backwards from the championship and choose a single tournament outcome
@@ -31,7 +31,7 @@ extractBracket <- function(sim, restrict=TRUE){
       dat <- dat[winner == keep | !(slot_int %in% prior_slots$slot_int),]
     }
   } else {
-    dat[, prob := prob + runif(.N)/1e12]
+    dat[, prob := prob + stats::runif(.N)/1e12]
     dat[, res := as.integer(prob == max(prob)), by='slot']
     dat <- dat[res == 1,]
     dat[, res := NULL]

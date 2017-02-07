@@ -3,21 +3,21 @@
 \docType{data}
 \name{tourney_compact_results}
 \alias{tourney_compact_results}
+\alias{tourney_compact_results}
 \title{tourney_compact_results.csv from Kaggle}
 \description{
 tourney_compact_results.csv from Kaggle
 
 tourney_compact_results.csv from Kaggle
 }
-\author{
-Zach Mayer \email{zach.mayer@gmail.com}
-
-Zach Mayer \email{zach.mayer@gmail.com}
-}
 \references{
 \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 
 \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 }
-\keyword{data}
+\author{
+Zach Mayer \email{zach.mayer@gmail.com}
 
+Zach Mayer \email{zach.mayer@gmail.com}
+}
+\keyword{data}

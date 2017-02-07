@@ -27,4 +27,3 @@ f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mus
 dat <- parseBracket(f)
 head(dat)
 }
-
