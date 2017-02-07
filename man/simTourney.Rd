@@ -32,4 +32,3 @@ Runs N simulations of the NCAA tournament
 \note{
 Can be a little slow
 }
-

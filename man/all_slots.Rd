@@ -7,11 +7,10 @@
 \description{
 Every possible NCAA matchup, with the associated slot and next slot
 }
-\author{
-Zach Mayer \email{zach.mayer@gmail.com}
-}
 \references{
 \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
 }
+\author{
+Zach Mayer \email{zach.mayer@gmail.com}
+}
 \keyword{data}
-

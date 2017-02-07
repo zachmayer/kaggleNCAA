@@ -1,7 +1,7 @@
 Package: kaggleNCAA
 Type: Package
 Title: Simulate the NCAA tournament
-Version: 0.0.3.900
+Version: 0.0.4.900
 Date: 2015-02-34
 Authors@R: person(c("Zachary", "A."), "Mayer", role = c("aut", "cre"),
     email = "zach.mayer@gmail.com")
@@ -18,5 +18,8 @@ Suggests:
 License: MIT + file LICENSE
 Imports:
     data.table,
-    pbapply
-RoxygenNote: 5.0.1
+    pbapply,
+    graphics,
+    stats,
+    utils
+RoxygenNote: 6.0.0

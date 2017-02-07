@@ -12,11 +12,10 @@
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
 #' @return a data.table
-#' @importFrom data.table := rbindlist
-#' @importFrom pbapply pblapply
+#' @importFrom data.table :=
 #' @export
 simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
-  data('all_slots', package='kaggleNCAA', envir=environment())
+  utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
   preds <- preds[season==year,]
@@ -31,7 +30,7 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
   preds[, seed_2_int := as.integer(substr(seed_2, 2, 3))]
 
   #Add some columns for tracking the simulation
-  preds[, rand := runif(.N),]
+  preds[, rand := stats::runif(.N),]
   preds[, winner := ifelse(pred > rand, team_1, team_2)]
   preds[, keep := 1L]
 
@@ -43,14 +42,14 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
 
   #Decide on progress bars
   if(progress){
-    apply_fun <- pblapply
+    apply_fun <- pbapply::pblapply
   } else{
     apply_fun <- lapply
   }
 
   #Run the simulation
   sims_list <- apply_fun(1:N, function(x) {
-    preds[, rand := runif(.N),]
+    preds[, rand := stats::runif(.N),]
     if(upset_bias!=0){
       preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
       preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
@@ -60,10 +59,10 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
     })
 
   #Aggregate results
-  sims <- rbindlist(sims_list)
-  setkeyv(sims, c('slot', 'winner'))
+  sims <- data.table::rbindlist(sims_list)
+  data.table::setkeyv(sims, c('slot', 'winner'))
   sims <- sims[,list(count=.N), by=c('slot', 'winner')]
-  sims[, count := count + runif(.N)/1e12]
+  sims[, count := count + stats::runif(.N)/1e12]
 
   #Add omitted zeros
   all_possible_slots_team_1 <- all_slots[season==year, list(slot, winner=team_1)]
@@ -93,10 +92,10 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
 #' @return a data.table
-#' @importFrom data.table := setkeyv
+#' @importFrom data.table :=
 #' @export
 walkTourney <- function(preds, year=2015, upset_bias=0){
-  data('all_slots', package='kaggleNCAA', envir=environment())
+  utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
   preds <- preds[season==year,]
@@ -119,7 +118,7 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
 
   #Randomly break ties
   small_num <- 1e-6
-  preds[, pred := pred + runif(.N, min = -1 * small_num, max = small_num)]
+  preds[, pred := pred + stats::runif(.N, min = -1 * small_num, max = small_num)]
 
   #Decide a winner
   preds[, winner := ifelse(pred > rand, team_1, team_2)]
@@ -133,14 +132,14 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
   sims[,pred := ifelse(team_1 == winner, pred, 1-pred)]
 
   #Aggregate results
-  setkeyv(sims, c('slot', 'winner'))
+  data.table::setkeyv(sims, c('slot', 'winner'))
   sims[, count := 1]
-  setkeyv(sims, c('winner', 'round'))
+  data.table::setkeyv(sims, c('winner', 'round'))
   sims[, prob := cumprod(pred), by=c('winner')]
 
   #Add year and return
   sims[, season := year]
-  setkeyv(sims, c('slot', 'winner'))
+  data.table::setkeyv(sims, c('slot', 'winner'))
   return(sims)
 }
 
@@ -151,7 +150,6 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
 #' @details Internal simulation function
 #' @param preds the tournament data to use for the simulation
 #' @return a data.table
-#' @importFrom data.table data.table
 sim_tourney_internal <- function(preds){
 
   all_rounds <- sort(unique(preds$round))
@@ -182,7 +180,7 @@ sim_tourney_internal <- function(preds){
     preds[, c('keep_team_1', 'keep_team_2') := NULL]
   }
   preds <- preds[,list(slot, round, team_1, team_2, winner)]
-  setkeyv(preds, 'slot')
+  data.table::setkeyv(preds, 'slot')
 
   return(preds)
 }

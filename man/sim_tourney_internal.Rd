@@ -18,4 +18,3 @@ Chooses a random number.  If pred > r, the lower id team wins.
 \details{
 Internal simulation function
 }
-

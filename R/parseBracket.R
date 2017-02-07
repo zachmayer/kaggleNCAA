@@ -7,21 +7,21 @@
 #' @note Will only have 1 row per game, where team_1 is the lower id team
 #' @param f Path to the Kaggle-formatted bracket csv
 #' @return a data.table
-#' @importFrom data.table fread setcolorder setkeyv :=
+#' @importFrom data.table :=
 #' @export
 #' @examples
 #' f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA", mustWork=TRUE)
 #' dat <- parseBracket(f)
 #' head(dat)
 parseBracket <- function(f){
-  dat <- fread(f)
-  setnames(dat, tolower(names(dat)))
+  dat <- data.table::fread(f)
+  data.table::setnames(dat, tolower(names(dat)))
   dat[, id := strsplit(dat$id, '_')]
   dat[,season := as.integer(sapply(id, '[', 1))]
   dat[,team_1 := as.integer(sapply(id, '[', 2))]
   dat[,team_2 := as.integer(sapply(id, '[', 3))]
   dat[, id := NULL]
-  setcolorder(dat, c('season', 'team_1', 'team_2', 'pred'))
-  setkeyv(dat, c('season', 'team_1', 'team_2'))
+  data.table::setcolorder(dat, c('season', 'team_1', 'team_2', 'pred'))
+  data.table::setkeyv(dat, c('season', 'team_1', 'team_2'))
   return(dat)
 }
