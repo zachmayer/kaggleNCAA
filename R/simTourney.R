@@ -150,6 +150,8 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
 #' @details Internal simulation function
 #' @param preds the tournament data to use for the simulation
 #' @return a data.table
+#' @export
+#'
 sim_tourney_internal <- function(preds){
 
   all_rounds <- sort(unique(preds$round))
