@@ -20,7 +20,7 @@ tourney_detailed_results <- fread('inst/kaggle_data/TourneyDetailedResults.csv')
 tourney_seeds <- fread('inst/kaggle_data/TourneySeeds.csv')
 tourney_slots <- fread('inst/kaggle_data/TourneySlots.csv')
 
-sample_submission <- fread('inst/kaggle_data/SampleSubmission.csv')
+sample_submission <- fread('inst/kaggle_data/sample_submission.csv')
 
 names(seasons) <- tolower(names(seasons))
 names(teams) <- tolower(names(teams))
