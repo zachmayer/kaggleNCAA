@@ -11,16 +11,16 @@ library(geosphere)
 seasons <- fread('inst/kaggle_data/Seasons.csv')
 teams <- fread('inst/kaggle_data/Teams.csv')
 
-regular_season_compact_results <- fread('inst/kaggle_data/RegularSeasonCompactResults.csv')
-regular_season_detailed_results <- fread('inst/kaggle_data/RegularSeasonDetailedResults.csv')
+regular_season_compact_results <- fread('inst/kaggle_data/2017_Final_CompactResults.csv')
+regular_season_detailed_results <- fread('inst/kaggle_data/2017_Final_DetailedResults.csv')
 
 tourney_compact_results <- fread('inst/kaggle_data/TourneyCompactResults.csv')
 tourney_detailed_results <- fread('inst/kaggle_data/TourneyDetailedResults.csv')
 
-tourney_seeds <- fread('inst/kaggle_data/TourneySeeds.csv')
-tourney_slots <- fread('inst/kaggle_data/TourneySlots.csv')
+tourney_seeds <- fread('inst/kaggle_data/Prelim_TourneySeeds.csv')
+tourney_slots <- fread('inst/kaggle_data/Prelim_TourneySlots.csv')
 
-sample_submission <- fread('inst/kaggle_data/sample_submission.csv')
+sample_submission <- fread('inst/kaggle_data/Prelim_SeedBenchmark.csv')
 
 names(seasons) <- tolower(names(seasons))
 names(teams) <- tolower(names(teams))
@@ -41,7 +41,7 @@ geo_team <- fread('inst/kaggle_data/TeamGeog.csv')
 teams <- merge(teams, geo_team, by=c('team_id'), all.x=TRUE)
 
 #Tourney geo
-geo_tourney <- fread('inst/kaggle_data/TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
+geo_tourney <- fread('inst/kaggle_data/Prelim_TourneyGeog.csv')[,list(season, slot, host, lat, lng)]
 setnames(geo_tourney, c('lat', 'lng'), c('host_lat', 'host_lng'))
 tourney_slots <- merge(tourney_slots, geo_tourney, by=c('season', 'slot'), all.x=TRUE)
 
