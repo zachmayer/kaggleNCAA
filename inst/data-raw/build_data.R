@@ -4,6 +4,7 @@ rm(list=ls(all=TRUE))
 library(data.table)
 library(devtools)
 library(geosphere)
+library(stringi)
 
 THIS_YEAR <- 2017
 
@@ -246,9 +247,8 @@ gc(reset=TRUE)
 
 #Add seeds
 tmp_dat_2 <- all_slots[,list(season, team_1, team_2, seed_1, seed_2)]
-replace <- '[W|X|Y|Z|a|b]'
-tmp_dat_2[,seed_1 := as.integer(gsub(replace, '', seed_1))]
-tmp_dat_2[,seed_2 := as.integer(gsub(replace, '', seed_2))]
+tmp_dat_2[, seed_1 := as.integer(gsub('[[:alpha:]]', '', seed_1))]
+tmp_dat_2[, seed_2 := as.integer(gsub('[[:alpha:]]', '', seed_2))]
 tmp_dat_2[,seed_diff := seed_1 - seed_2]
 tmp_dat_2[,c('seed_1', 'seed_2') := NULL]
 tmp_dat <- merge(tmp_dat, tmp_dat_2, by=c('season', 'team_1', 'team_2'))
@@ -261,12 +261,14 @@ setkeyv(tmp_dat, 'id')
 # summary(tmp_dat[,sum(pred),by='id'])
 # summary(tmp_dat[,sum(won),by='id'])
 # summary(tmp_dat[,sum(seed_diff),by='id'])
-tmp_dat
 
 #Add to sample sub
-tmp_dat <- tmp_dat[,id := paste(season, team_1, team_2, sep='_')]
+#tmp_dat <- tmp_dat[,id := paste(season, team_1, team_2, sep='_')]
+tmp_dat <- tmp_dat[team_1 < team_2 & season == THIS_YEAR,]
 tmp_dat <- tmp_dat[,list(id, pred)]
 sample_submission <- merge(sample_submission, tmp_dat, by='id', all.x=T)
+
+write.csv(sample_submission, 'inst/kaggle_data/seed_benchmark.csv', row.names=F)
 
 ##########################################
 # Save data

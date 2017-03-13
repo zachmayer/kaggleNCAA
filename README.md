@@ -15,8 +15,11 @@ Then simulate a tournament and print a bracket:
 ``` r
 set.seed(1)
 library('kaggleNCAA')
-f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA")
+data(sample_submission)
+f <- tempfile()
+write.csv(sample_submission, f, row.names=F)
 dat <- parseBracket(f)
+unlink(f)
 sim <- simTourney(dat, 1000, year=2017, progress=TRUE)
 bracket <- extractBracket(sim)
 printableBracket(bracket)
