@@ -11,8 +11,14 @@ library(geosphere)
 seasons <- fread('inst/kaggle_data/Seasons.csv')
 teams <- fread('inst/kaggle_data/Teams.csv')
 
-regular_season_compact_results <- fread('inst/kaggle_data/2017_Final_CompactResults.csv')
-regular_season_detailed_results <- fread('inst/kaggle_data/2017_Final_DetailedResults.csv')
+regular_season_compact_results <- fread('inst/kaggle_data/RegularSeasonCompactResults.csv')
+regular_season_detailed_results <- fread('inst/kaggle_data/RegularSeasonDetailedResults.csv')
+
+regular_season_compact_results_2017 <- fread('inst/kaggle_data/2017_Final_CompactResults.csv')
+regular_season_detailed_results_2017 <- fread('inst/kaggle_data/2017_Final_DetailedResults.csv')
+
+regular_season_compact_results <- rbind(regular_season_compact_results, regular_season_compact_results_2017)
+regular_season_detailed_results <- rbind(regular_season_detailed_results, regular_season_detailed_results_2017)
 
 tourney_compact_results <- fread('inst/kaggle_data/TourneyCompactResults.csv')
 tourney_detailed_results <- fread('inst/kaggle_data/TourneyDetailedResults.csv')
