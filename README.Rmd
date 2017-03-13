@@ -31,7 +31,7 @@ f <- tempfile()
 write.csv(sample_submission, f, row.names=F)
 dat <- parseBracket(f)
 unlink(f)
-sim <- simTourney(dat, 1000, year=2017, progress=TRUE)
+sim <- simTourney(dat, 100, year=2017, progress=TRUE)
 bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
