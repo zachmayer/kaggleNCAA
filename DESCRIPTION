@@ -1,7 +1,7 @@
 Package: kaggleNCAA
 Type: Package
 Title: Simulate the NCAA tournament
-Version: 0.0.4.9001
+Version: 2.0.0.9001
 Date: 2015-02-34
 Authors@R: person(c("Zachary", "A."), "Mayer", role = c("aut", "cre"),
     email = "zach.mayer@gmail.com")
@@ -14,7 +14,8 @@ Suggests:
     testthat,
     devtools,
     reshape2,
-    geosphere
+    geosphere,
+    XML
 License: MIT + file LICENSE
 Imports:
     data.table,

@@ -125,10 +125,13 @@ NULL
 #' @keywords data
 NULL
 
-#' Prelim 2015 prediction baseline
+#' Ken Pomery's Ratings
+#' a printable bracket.
 #'
-#' @name sample_submission_seed_2015
+#' @name PomeryRatings
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @references
+#' \url{http://kenpom.com/}
 #' @keywords data
 NULL
