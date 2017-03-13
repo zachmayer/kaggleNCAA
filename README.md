@@ -17,7 +17,7 @@ set.seed(1)
 library('kaggleNCAA')
 f <- system.file('kaggle_data/SampleSubmission.csv', package = "kaggleNCAA")
 dat <- parseBracket(f)
-sim <- simTourney(dat, 100, year=2016, progress=TRUE)
+sim <- simTourney(dat, 100, year=2017, progress=TRUE)
 bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
@@ -25,7 +25,7 @@ printableBracket(bracket)
 ![](README-sim_bracket-1.png) If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
 
 ``` r
-bracket <- walkTourney(dat, year=2016)
+bracket <- walkTourney(dat, year=2017)
 printableBracket(bracket)
 ```
 
