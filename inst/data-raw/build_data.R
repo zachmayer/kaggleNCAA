@@ -209,42 +209,63 @@ setcolorder(tourney_compact_results, names(regular_season_compact_results))
 # Replace sample sub with a simple seed diff benchmark
 ##########################################
 
-#Model on old tourneys
-tmp_dat_1 <- tourney_compact_results[,list(season, team_1 = wteam, team_2 = lteam, won = 1)]
-tmp_dat_2 <- tourney_compact_results[,list(season, team_1 = lteam, team_2 = wteam, won = 0)]
-tmp_dat <- rbind(tmp_dat_1, tmp_dat_2)
-rm(tmp_dat_1, tmp_dat_2)
+#Wrangle the data, ugh
+tmp_dat <- tourney_compact_results[,list(season, wteam, lteam, wscore, lscore)]
+tmp_dat[,id1 := stri_paste(season, wteam, lteam, sep='_')]
+tmp_dat[,id2 := stri_paste(season, lteam, wteam, sep='_')]
+tmp_dat[wteam < lteam, id := id1]
+tmp_dat[wteam > lteam, id := id2]
+tmp_dat[,c('id1', 'id2') := NULL]
+rename = c('team', 'score')
+oldnames <- c(paste0('w', rename), paste0('l', rename))
+newnames <- c(paste0(rename, '_1'), paste0(rename, '_2'))
+setnames(tmp_dat, oldnames, newnames)
 
-tmp_dat <- merge(tmp_dat, tourney_seeds, by.x=c('season', 'team_1'), by.y=c('season', 'team'))
-setnames(tmp_dat, 'seed', 'seed_1')
-tmp_dat <- merge(tmp_dat, tourney_seeds, by.x=c('season', 'team_2'), by.y=c('season', 'team'))
-setnames(tmp_dat, 'seed', 'seed_2')
-
-replace <- '[W|X|Y|Z|a|b]'
-tmp_dat[,seed_1 := as.integer(gsub(replace, '', seed_1))]
-tmp_dat[,seed_2 := as.integer(gsub(replace, '', seed_2))]
-tmp_dat[,seed_diff := seed_2 - seed_1]
-
-model <- tmp_dat[,glm(won ~ 0 + seed_diff, family='binomial')]
-rm(tmp_dat)
-
-#Predict on this year
-tmp_dat <- all_slots[season %in% THIS_YEAR, list(season, seed_1 = seed_1, seed_2 = seed_2)]
-
-tmp_dat <- merge(tmp_dat, tourney_seeds, by.x=c('season', 'seed_1'), by.y=c('season', 'seed'))
-setnames(tmp_dat, 'team', 'team_1')
-tmp_dat <- merge(tmp_dat, tourney_seeds, by.x=c('season', 'seed_2'), by.y=c('season', 'seed'))
-setnames(tmp_dat, 'team', 'team_2')
-
-tmp_dat[,seed_1 := as.integer(gsub(replace, '', seed_1))]
-tmp_dat[,seed_2 := as.integer(gsub(replace, '', seed_2))]
-tmp_dat[,seed_diff := seed_2 - seed_1]
-
-tmp_dat <- tmp_dat[,id := paste(season, team_1, team_2, sep='_')]
-tmp_dat <- tmp_dat[,pred := predict(model, tmp_dat, type='response')]
-tmp_dat <- tmp_dat[,list(id, pred)]
-
+ids <- stri_split_fixed(sample_submission[['id']], '_')
 sample_submission[,pred := NULL]
+sample_submission[, season := as.integer(sapply(ids, '[[', 1))]
+sample_submission[, team_1 := as.integer(sapply(ids, '[[', 2))]
+sample_submission[, team_2 := as.integer(sapply(ids, '[[', 3))]
+
+tmp_dat <- rbind(tmp_dat, sample_submission, fill=T)
+sample_submission[,c('season', 'team_1', 'team_2') := NULL]
+
+team1 <- tmp_dat[,list(
+  id, season,
+  team_1, team_2,
+  score_1, score_2)]
+
+team2 <- tmp_dat[,list(
+  id, season,
+  team_1=team_2, team_2=team_1,
+  score_1=score_2, score_2=score_1)]
+
+tmp_dat <- rbindlist(list(team1, team2))
+rm(team1, team2)
+gc(reset=TRUE)
+
+#Add seeds
+tmp_dat_2 <- all_slots[,list(season, team_1, team_2, seed_1, seed_2)]
+replace <- '[W|X|Y|Z|a|b]'
+tmp_dat_2[,seed_1 := as.integer(gsub(replace, '', seed_1))]
+tmp_dat_2[,seed_2 := as.integer(gsub(replace, '', seed_2))]
+tmp_dat_2[,seed_diff := seed_1 - seed_2]
+tmp_dat_2[,c('seed_1', 'seed_2') := NULL]
+tmp_dat <- merge(tmp_dat, tmp_dat_2, by=c('season', 'team_1', 'team_2'))
+
+#Model and Predict
+tmp_dat[,won := as.integer(score_1 > score_2)]
+model <- tmp_dat[!is.na(won), glm(won ~ 0 + seed_diff, family='binomial')]
+tmp_dat <- tmp_dat[,pred := predict(model, tmp_dat, type='response')]
+setkeyv(tmp_dat, 'id')
+# summary(tmp_dat[,sum(pred),by='id'])
+# summary(tmp_dat[,sum(won),by='id'])
+# summary(tmp_dat[,sum(seed_diff),by='id'])
+tmp_dat
+
+#Add to sample sub
+tmp_dat <- tmp_dat[,id := paste(season, team_1, team_2, sep='_')]
+tmp_dat <- tmp_dat[,list(id, pred)]
 sample_submission <- merge(sample_submission, tmp_dat, by='id', all.x=T)
 
 ##########################################
