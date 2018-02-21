@@ -1,0 +1,365 @@
+TeamID,TeamName
+3101,Abilene Chr
+3102,Air Force
+3103,Akron
+3104,Alabama
+3105,Alabama A&M
+3106,Alabama St
+3107,Albany NY
+3108,Alcorn St
+3109,Alliant Intl
+3110,American Univ
+3111,Appalachian St
+3112,Arizona
+3113,Arizona St
+3114,Ark Little Rock
+3115,Ark Pine Bluff
+3116,Arkansas
+3117,Arkansas St
+3118,Armstrong St
+3119,Army
+3120,Auburn
+3121,Augusta
+3122,Austin Peay
+3123,Ball St
+3124,Baylor
+3125,Belmont
+3126,Bethune-Cookman
+3127,Binghamton
+3128,Birmingham So
+3129,Boise St
+3130,Boston College
+3131,Boston Univ
+3132,Bowling Green
+3133,Bradley
+3134,Brooklyn
+3135,Brown
+3136,Bryant
+3137,Bucknell
+3138,Buffalo
+3139,Butler
+3140,BYU
+3141,C Michigan
+3142,Cal Poly SLO
+3143,California
+3144,Campbell
+3145,Canisius
+3146,Cent Arkansas
+3147,Centenary
+3148,Central Conn
+3149,Charleston So
+3150,Charlotte
+3151,Chattanooga
+3152,Chicago St
+3153,Cincinnati
+3154,Citadel
+3155,Clemson
+3156,Cleveland St
+3157,Coastal Car
+3158,Col Charleston
+3159,Colgate
+3160,Colorado
+3161,Colorado St
+3162,Columbia
+3163,Connecticut
+3164,Coppin St
+3165,Cornell
+3166,Creighton
+3167,CS Bakersfield
+3168,CS Fullerton
+3169,CS Northridge
+3170,CS Sacramento
+3171,Dartmouth
+3172,Davidson
+3173,Dayton
+3174,Delaware
+3175,Delaware St
+3176,Denver
+3177,DePaul
+3178,Detroit
+3179,Drake
+3180,Drexel
+3181,Duke
+3182,Duquesne
+3183,E Illinois
+3184,E Kentucky
+3185,E Michigan
+3186,E Washington
+3187,East Carolina
+3188,Edwardsville
+3189,Elon
+3190,ETSU
+3191,Evansville
+3192,F Dickinson
+3193,Fairfield
+3194,FL Atlantic
+3195,FL Gulf Coast
+3196,Florida
+3197,Florida A&M
+3198,Florida Intl
+3199,Florida St
+3200,Fordham
+3201,Fresno St
+3202,Furman
+3203,G Washington
+3204,Ga Southern
+3205,Gardner Webb
+3206,George Mason
+3207,Georgetown
+3208,Georgia
+3209,Georgia St
+3210,Georgia Tech
+3211,Gonzaga
+3212,Grambling
+3213,Grand Canyon
+3214,Hampton
+3215,Hardin-Simmons
+3216,Hartford
+3217,Harvard
+3218,Hawaii
+3219,High Point
+3220,Hofstra
+3221,Holy Cross
+3222,Houston
+3223,Houston Bap
+3224,Howard
+3225,Idaho
+3226,Idaho St
+3227,IL Chicago
+3228,Illinois
+3229,Illinois St
+3230,Incarnate Word
+3231,Indiana
+3232,Indiana St
+3233,Iona
+3234,Iowa
+3235,Iowa St
+3236,IPFW
+3237,IUPUI
+3238,Jackson St
+3239,Jacksonville
+3240,Jacksonville St
+3241,James Madison
+3242,Kansas
+3243,Kansas St
+3244,Kennesaw
+3245,Kent
+3246,Kentucky
+3247,La Salle
+3248,Lafayette
+3249,Lamar
+3250,Lehigh
+3251,Liberty
+3252,Lipscomb
+3253,Long Beach St
+3254,Long Island
+3255,Longwood
+3256,Louisiana Tech
+3257,Louisville
+3258,Loy Marymount
+3259,Loyola MD
+3260,Loyola-Chicago
+3261,LSU
+3262,MA Lowell
+3263,Maine
+3264,Manhattan
+3265,Marist
+3266,Marquette
+3267,Marshall
+3268,Maryland
+3269,Massachusetts
+3270,McNeese St
+3271,MD E Shore
+3272,Memphis
+3273,Mercer
+3274,Miami FL
+3275,Miami OH
+3276,Michigan
+3277,Michigan St
+3278,Minnesota
+3279,Mississippi
+3280,Mississippi St
+3281,Missouri
+3282,Missouri KC
+3283,Missouri St
+3284,Monmouth NJ
+3285,Montana
+3286,Montana St
+3287,Morehead St
+3288,Morgan St
+3289,Morris Brown
+3290,MS Valley St
+3291,Mt St Mary's
+3292,MTSU
+3293,Murray St
+3294,N Colorado
+3295,N Dakota St
+3296,N Illinois
+3297,N Kentucky
+3298,Navy
+3299,NC A&T
+3300,NC Central
+3301,NC State
+3302,NE Illinois
+3303,NE Omaha
+3304,Nebraska
+3305,Nevada
+3306,New Hampshire
+3307,New Mexico
+3308,New Mexico St
+3309,New Orleans
+3310,Niagara
+3311,Nicholls St
+3312,NJIT
+3313,Norfolk St
+3314,North Carolina
+3315,North Dakota
+3316,North Florida
+3317,North Texas
+3318,Northeastern
+3319,Northern Arizona
+3320,Northern Iowa
+3321,Northwestern
+3322,Northwestern LA
+3323,Notre Dame
+3324,Oakland
+3325,Ohio
+3326,Ohio St
+3327,Okla City
+3328,Oklahoma
+3329,Oklahoma St
+3330,Old Dominion
+3331,Oral Roberts
+3332,Oregon
+3333,Oregon St
+3334,Pacific
+3335,Penn
+3336,Penn St
+3337,Pepperdine
+3338,Pittsburgh
+3339,Portland
+3340,Portland St
+3341,Prairie View
+3342,Presbyterian
+3343,Princeton
+3344,Providence
+3345,Purdue
+3346,Quinnipiac
+3347,Radford
+3348,Rhode Island
+3349,Rice
+3350,Richmond
+3351,Rider
+3352,Robert Morris
+3353,Rutgers
+3354,S Carolina St
+3355,S Dakota St
+3356,S Illinois
+3357,Sacred Heart
+3358,Sam Houston St
+3359,Samford
+3360,San Diego
+3361,San Diego St
+3362,San Francisco
+3363,San Jose St
+3364,Santa Barbara
+3365,Santa Clara
+3366,Savannah St
+3367,SC Upstate
+3368,SE Louisiana
+3369,SE Missouri St
+3370,Seattle
+3371,Seton Hall
+3372,SF Austin
+3373,Siena
+3374,SMU
+3375,South Alabama
+3376,South Carolina
+3377,South Dakota
+3378,South Florida
+3379,Southern Miss
+3380,Southern Univ
+3381,Southern Utah
+3382,St Bonaventure
+3383,St Francis NY
+3384,St Francis PA
+3385,St John's
+3386,St Joseph's PA
+3387,St Louis
+3388,St Mary's CA
+3389,St Peter's
+3390,Stanford
+3391,Stetson
+3392,Stony Brook
+3393,Syracuse
+3394,TAM C. Christi
+3395,TCU
+3396,Temple
+3397,Tennessee
+3398,Tennessee St
+3399,Tennessee Tech
+3400,Texas
+3401,Texas A&M
+3402,Texas St
+3403,Texas Tech
+3404,TN Martin
+3405,Toledo
+3406,Towson
+3407,Troy
+3408,Tulane
+3409,Tulsa
+3410,UTRGV
+3411,TX Southern
+3412,UAB
+3413,UC Davis
+3414,UC Irvine
+3415,UC Riverside
+3416,UCF
+3417,UCLA
+3418,ULL
+3419,ULM
+3420,UMBC
+3421,UNC Asheville
+3422,UNC Greensboro
+3423,UNC Wilmington
+3424,UNLV
+3425,USC
+3426,UT Arlington
+3427,UT San Antonio
+3428,Utah
+3429,Utah St
+3430,Utah Valley
+3431,UTEP
+3432,Utica
+3433,VA Commonwealth
+3434,Valparaiso
+3435,Vanderbilt
+3436,Vermont
+3437,Villanova
+3438,Virginia
+3439,Virginia Tech
+3440,VMI
+3441,W Carolina
+3442,W Illinois
+3443,WKU
+3444,W Michigan
+3445,W Salem St
+3446,W Texas A&M
+3447,Wagner
+3448,Wake Forest
+3449,Washington
+3450,Washington St
+3451,Weber St
+3452,West Virginia
+3453,WI Green Bay
+3454,WI Milwaukee
+3455,Wichita St
+3456,William & Mary
+3457,Winthrop
+3458,Wisconsin
+3459,Wofford
+3460,Wright St
+3461,Wyoming
+3462,Xavier
+3463,Yale
+3464,Youngstown St

@@ -15,21 +15,25 @@ Then simulate a tournament and print a bracket:
 ``` r
 set.seed(1)
 library('kaggleNCAA')
-data(sample_submission)
+data(sample_submission_men)
 f <- tempfile()
-write.csv(sample_submission, f, row.names=F)
+write.csv(sample_submission_men, f, row.names=F)
 dat <- parseBracket(f)
+#> Assuming men's bracket
 unlink(f)
-sim <- simTourney(dat, 100, year=2017, progress=TRUE)
+sim <- simTourney(dat, 100, year=2018, progress=TRUE)
+#> assuming women = 0
 bracket <- extractBracket(sim)
 printableBracket(bracket)
+#> assuming women = 0
 ```
 
 ![](README-sim_bracket-1.png) If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
 
 ``` r
-bracket <- walkTourney(dat, year=2017)
+bracket <- walkTourney(dat, year=2018)
 printableBracket(bracket)
+#> assuming women = 0
 ```
 
 ![](README-walk_bracket-1.png) Note in this case that the probabilities associated with the team making it to a given round will be incorrect

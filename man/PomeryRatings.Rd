@@ -3,11 +3,9 @@
 \docType{data}
 \name{PomeryRatings}
 \alias{PomeryRatings}
-\title{Ken Pomery's Ratings
-a printable bracket.}
+\title{Ken Pomery's Ratings}
 \description{
 Ken Pomery's Ratings
-a printable bracket.
 }
 \references{
 \url{http://kenpom.com/}

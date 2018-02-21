@@ -1,5 +1,6 @@
-name_spelling,team_id
+TeamNameSpelling,TeamID
 a&m-corpus chris,1394
+a&m-corpus christi,1394
 abilene chr,1101
 abilene christian,1101
 abilene-christian,1101
@@ -13,6 +14,7 @@ alabama st.,1106
 alabama state,1106
 alabama-am,1105
 alabama-birmingham,1412
+alabama-st,1106
 alabama-state,1106
 albany,1107
 albany (ny),1107
@@ -25,6 +27,7 @@ alcorn state,1108
 alcorn-state,1108
 alliant international,1109
 alliant intl,1109
+am-corpus-chris,1394
 american,1110
 american u.,1110
 american univ,1110
@@ -33,11 +36,13 @@ american-university,1110
 appalachian st,1111
 appalachian st.,1111
 appalachian state,1111
+appalachian-st,1111
 appalachian-state,1111
 arizona,1112
 arizona st,1113
 arizona st.,1113
 arizona state,1113
+arizona-st,1113
 arizona-state,1113
 ark little rock,1114
 ark pine bluff,1115
@@ -50,10 +55,14 @@ arkansas-little rock,1114
 arkansas-little-rock,1114
 arkansas-pine bluff,1115
 arkansas-pine-bluff,1115
+arkansas-st,1117
 arkansas-state,1117
+ark-pine-bluff,1115
 armstrong,1118
 armstrong st,1118
 army,1119
+army west point,1119
+army-west-point,1119
 auburn,1120
 augusta,1121
 augusta state,1121
@@ -63,6 +72,7 @@ bakersfield,1167
 ball st,1123
 ball st.,1123
 ball state,1123
+ball-st,1123
 ball-state,1123
 baylor,1124
 belmont,1125
@@ -74,6 +84,7 @@ birmingham-southern,1128
 boise st,1129
 boise st.,1129
 boise state,1129
+boise-st,1129
 boise-state,1129
 boston,1131
 boston college,1130
@@ -82,6 +93,7 @@ boston u.,1131
 boston univ,1131
 boston university,1131
 boston-college,1130
+boston-u,1131
 boston-university,1131
 bowling green,1132
 bowling green state,1132
@@ -107,10 +119,7 @@ cal st. northridge,1169
 cal state bakersfield,1167
 cal state fullerton,1168
 cal state northridge,1169
-cal-poly,1142
-cal-state-bakersfield,1167
-cal-state-fullerton,1168
-cal-state-northridge,1169
+cal state-fullerton,1168
 cal. state - bakersfield,1167
 california,1143
 california-davis,1413
@@ -118,11 +127,17 @@ california-irvine,1414
 california-riverside,1415
 california-santa barbara,1364
 california-santa-barbara,1364
+cal-poly,1142
+cal-state-bakersfield,1167
+cal-state-fullerton,1168
+cal-state-northridge,1169
+cal-st-fullerton,1168
 campbell,1144
 canisius,1145
 cent arkansas,1146
 centenary,1147
 centenary (la),1147
+centenary-la,1147
 central ark.,1146
 central arkansas,1146
 central conn,1148
@@ -133,20 +148,25 @@ central florida,1416
 central florida(ucf),1416
 central mich.,1141
 central michigan,1141
+central-ark,1146
 central-arkansas,1146
 central-connecticut-state,1148
+central-conn-st,1148
 central-florida,1416
+central-mich,1141
 central-michigan,1141
 charleston,1158
 charleston so,1149
 charleston so.,1149
 charleston southern,1149
+charleston-so,1149
 charleston-southern,1149
 charlotte,1150
 chattanooga,1151
 chicago st,1152
 chicago st.,1152
 chicago state,1152
+chicago-st,1152
 chicago-state,1152
 cincinnati,1153
 citadel,1154
@@ -154,10 +174,12 @@ clemson,1155
 cleveland st,1156
 cleveland st.,1156
 cleveland state,1156
+cleveland-st,1156
 cleveland-state,1156
 coastal car,1157
 coastal caro.,1157
 coastal carolina,1157
+coastal-caro,1157
 coastal-carolina,1157
 col charleston,1158
 col. of charleston,1158
@@ -165,16 +187,19 @@ colgate,1159
 college of charlesto,1158
 college of charleston,1158
 college-of-charleston,1158
+col-of-charleston,1158
 colorado,1160
 colorado st,1161
 colorado st.,1161
 colorado state,1161
+colorado-st,1161
 colorado-state,1161
 columbia,1162
 connecticut,1163
 coppin st,1164
 coppin st.,1164
 coppin state,1164
+coppin-st,1164
 coppin-state,1164
 cornell,1165
 creighton,1166
@@ -182,7 +207,10 @@ cs bakersfield,1167
 cs fullerton,1168
 cs northridge,1169
 cs sacramento,1170
+csu bakersfield,1167
 csu northridge,1169
+csu-bakersfield,1167
+csun,1169
 dartmouth,1171
 davidson,1172
 dayton,1173
@@ -190,6 +218,7 @@ delaware,1174
 delaware st,1175
 delaware st.,1175
 delaware state,1175
+delaware-st,1175
 delaware-state,1175
 denver,1176
 depaul,1177
@@ -209,7 +238,6 @@ east tenn. st.,1190
 east tennessee st.,1190
 east tennessee state,1190
 east-carolina,1187
-east-tennessee-state,1190
 eastern ill.,1183
 eastern illinois,1183
 eastern kentucky,1184
@@ -218,10 +246,15 @@ eastern mich.,1185
 eastern michigan,1185
 eastern wash.,1186
 eastern washington,1186
+eastern-ill,1183
 eastern-illinois,1183
 eastern-kentucky,1184
+eastern-ky,1184
+eastern-mich,1185
 eastern-michigan,1185
+eastern-wash,1186
 eastern-washington,1186
+east-tennessee-state,1190
 edwardsville,1188
 elon,1189
 elon university,1189
@@ -237,6 +270,7 @@ fiu,1198
 fl atlantic,1194
 fl gulf coast,1195
 fla. atlantic,1194
+fla-atlantic,1194
 florida,1196
 florida a&m,1197
 florida atlantic,1194
@@ -251,12 +285,16 @@ florida-am,1197
 florida-atlantic,1194
 florida-gulf-coast,1195
 florida-international,1198
+florida-st,1199
 florida-state,1199
 fordham,1200
+fort wayne,1236
 fort wayne(ipfw),1236
+fort-wayne,1236
 fresno st,1201
 fresno st.,1201
 fresno state,1201
+fresno-st,1201
 fresno-state,1201
 furman,1202
 g washington,1203
@@ -264,11 +302,12 @@ ga southern,1204
 ga. southern,1204
 gardner webb,1205
 gardner-webb,1205
+ga-southern,1204
 george mason,1206
 george washington,1203
 george-mason,1206
-george-washington,1203
 georgetown,1207
+george-washington,1203
 georgia,1208
 georgia southern,1204
 georgia st,1209
@@ -276,6 +315,7 @@ georgia st.,1209
 georgia state,1209
 georgia tech,1210
 georgia-southern,1204
+georgia-st,1209
 georgia-state,1209
 georgia-tech,1210
 gonzaga,1211
@@ -292,6 +332,7 @@ hardin-simmons,1215
 hartford,1216
 harvard,1217
 hawaii,1218
+hawai'i,1218
 high point,1219
 high-point,1219
 hofstra,1220
@@ -306,14 +347,17 @@ idaho,1225
 idaho st,1226
 idaho st.,1226
 idaho state,1226
+idaho-st,1226
 idaho-state,1226
 il chicago,1227
 ill.-chicago,1227
+ill-chicago,1227
 illinois,1228
 illinois st,1229
 illinois st.,1229
 illinois state,1229
 illinois-chicago,1227
+illinois-st,1229
 illinois-state,1229
 incarnate word,1230
 incarnate-word,1230
@@ -322,12 +366,14 @@ indiana - purdue,1237
 indiana st,1232
 indiana st.,1232
 indiana state,1232
+indiana-st,1232
 indiana-state,1232
 iona,1233
 iowa,1234
 iowa st,1235
 iowa st.,1235
 iowa state,1235
+iowa-st,1235
 iowa-state,1235
 ipfw,1236
 iupu - ft. wayne,1236
@@ -337,11 +383,13 @@ iupui,1237
 jackson st,1238
 jackson st.,1238
 jackson state,1238
+jackson-st,1238
 jackson-state,1238
 jacksonville,1239
 jacksonville st,1240
 jacksonville st.,1240
 jacksonville state,1240
+jacksonville-st,1240
 jacksonville-state,1240
 james madison,1241
 james-madison,1241
@@ -349,25 +397,33 @@ kansas,1242
 kansas st,1243
 kansas st.,1243
 kansas state,1243
+kansas-st,1243
 kansas-state,1243
 kennesaw,1244
 kennesaw st.,1244
 kennesaw state,1244
+kennesaw-st,1244
 kennesaw-state,1244
 kent,1245
 kent st.,1245
 kent state,1245
+kent-st,1245
 kent-state,1245
 kentucky,1246
 la salle,1247
-la-salle,1247
 la.-lafayette,1418
 la.-monroe,1419
 lafayette,1248
 lamar,1249
+lamar university,1249
+lamar-university,1249
+la-monroe,1419
+la-salle,1247
 lehigh,1250
 liberty,1251
 lipscomb,1252
+little rock,1114
+little-rock,1114
 liu brooklyn,1254
 liu-brooklyn,1254
 long beach st,1253
@@ -375,10 +431,13 @@ long beach st.,1253
 long beach state,1253
 long island,1254
 long island university,1254
+longbeach state,1253
+long-beach-st,1253
 long-beach-state,1253
 long-island,1254
 long-island-university,1254
 longwood,1255
+louisiana,1418
 louisiana state,1261
 louisiana tech,1256
 louisiana-lafayette,1418
@@ -415,6 +474,7 @@ maryland-eastern-shore,1271
 massachusetts,1269
 massachusetts lowell,1262
 massachusetts-lowell,1262
+mcneese,1270
 mcneese st,1270
 mcneese st.,1270
 mcneese state,1270
@@ -425,9 +485,11 @@ md e shore,1271
 md. eastern shore,1271
 memphis,1272
 mercer,1273
-miami (fl),1274
-miami (oh),1275
 miami - florida,1274
+miami (fl),1274
+miami (fla.),1274
+miami (oh),1275
+miami (ohio),1275
 miami fl,1274
 miami oh,1275
 miami-fl,1274
@@ -438,12 +500,15 @@ michigan,1276
 michigan st,1277
 michigan st.,1277
 michigan state,1277
+michigan-st,1277
 michigan-state,1277
 middle tenn st,1292
 middle tenn st.,1292
 middle tenn.,1292
 middle tennessee,1292
 middle tennessee st.,1292
+middle tennessee state,1292
+middle-tenn,1292
 middle-tennessee,1292
 middle-tennessee-state,1292
 milwaukee,1454
@@ -455,7 +520,9 @@ mississippi st.,1280
 mississippi state,1280
 mississippi val.,1290
 mississippi valley state,1290
+mississippi-st,1280
 mississippi-state,1280
+mississippi-val,1290
 mississippi-valley-state,1290
 missouri,1281
 missouri kc,1282
@@ -464,6 +531,7 @@ missouri st.,1283
 missouri state,1283
 missouri-kansas city,1282
 missouri-kansas-city,1282
+missouri-st,1283
 missouri-state,1283
 mo kansas city,1282
 monmouth,1284
@@ -473,29 +541,35 @@ montana,1285
 montana st,1286
 montana st.,1286
 montana state,1286
+montana-st,1286
 montana-state,1286
 morehead st,1287
 morehead st.,1287
 morehead state,1287
+morehead-st,1287
 morehead-state,1287
 morgan st,1288
 morgan st.,1288
 morgan state,1288
+morgan-st,1288
 morgan-state,1288
 morris brown,1289
 morris-brown,1289
-mount st. mary's,1291
 mount st. marys,1291
+mount st. mary's,1291
 mount-st-marys,1291
 ms valley st,1290
 ms valley state,1290
 mt st mary's,1291
 mt st. mary's,1291
 mt. st. mary`s,1291
+mt. st. mary's,1291
+mt-st-marys,1291
 mtsu,1292
 murray st,1293
 murray st.,1293
 murray state,1293
+murray-st,1293
 murray-state,1293
 mvsu(miss. valley st,1290
 n colorado,1294
@@ -516,7 +590,10 @@ nc charlotte,1150
 nc greensboro,1422
 nc state,1301
 nc wilmington,1423
+nc-at,1299
+nc-central,1300
 nc-greensboro,1422
+nc-state,1301
 nc-wilmington,1423
 ne illinois,1302
 ne omaha,1303
@@ -536,19 +613,23 @@ new orleans,1309
 new-hampshire,1306
 new-jersey-tech,1312
 new-mexico,1307
+new-mexico-st,1308
 new-mexico-state,1308
+neworleans,1309
 new-orleans,1309
 niagara,1310
 nicholls,1311
 nicholls st,1311
 nicholls st.,1311
 nicholls state,1311
+nicholls-st,1311
 nicholls-state,1311
 njit,1312
 no.carolina a&t,1299
 norfolk st,1313
 norfolk st.,1313
 norfolk state,1313
+norfolk-st,1313
 norfolk-state,1313
 north carolina,1314
 north carolina a&t,1299
@@ -569,12 +650,12 @@ north-carolina-at,1299
 north-carolina-central,1300
 north-carolina-charlotte,1150
 north-carolina-greensboro,1422
+north-carolina-st,1301
 north-carolina-state,1301
 north-carolina-wilmington,1423
 north-dakota,1315
+north-dakota-st,1295
 north-dakota-state,1295
-north-florida,1316
-north-texas,1317
 northeastern,1318
 northeastern illinois,1302
 northern ariz.,1319
@@ -586,15 +667,22 @@ northern illinois,1296
 northern iowa,1320
 northern kentucky,1297
 northern ky.,1297
+northern-ariz,1319
 northern-arizona,1319
+northern-colo,1294
 northern-colorado,1294
+northern-ill,1296
 northern-illinois,1296
 northern-iowa,1320
 northern-kentucky,1297
+northern-ky,1297
+north-florida,1316
+north-texas,1317
 northwestern,1321
 northwestern la,1322
 northwestern st.,1322
 northwestern state,1322
+northwestern-st,1322
 northwestern-state,1322
 notre dame,1323
 notre-dame,1323
@@ -603,6 +691,7 @@ ohio,1325
 ohio st,1326
 ohio st.,1326
 ohio state,1326
+ohio-st,1326
 ohio-state,1326
 okla city,1327
 oklahoma,1328
@@ -610,10 +699,12 @@ oklahoma city,1327
 oklahoma st,1329
 oklahoma st.,1329
 oklahoma state,1329
+oklahoma-st,1329
 oklahoma-state,1329
 old dominion,1330
 old-dominion,1330
 ole miss,1279
+ole-miss,1279
 omaha,1303
 oral roberts,1331
 oral-roberts,1331
@@ -621,12 +712,14 @@ oregon,1332
 oregon st,1333
 oregon st.,1333
 oregon state,1333
+oregon-st,1333
 oregon-state,1333
 pacific,1334
 penn,1335
 penn st,1336
 penn st.,1336
 penn state,1336
+penn-st,1336
 penn-state,1336
 pennsylvania,1335
 pepperdine,1337
@@ -636,9 +729,11 @@ portland,1339
 portland st,1340
 portland st.,1340
 portland state,1340
+portland-st,1340
 portland-state,1340
 prairie view,1341
 prairie view a&m,1341
+prairie-view,1341
 prairie-view-am,1341
 presbyterian,1342
 princeton,1343
@@ -660,19 +755,23 @@ s dakota st,1355
 s illinois,1356
 sacramento st.,1170
 sacramento state,1170
+sacramento-st,1170
 sacramento-state,1170
 sacred heart,1357
 sacred-heart,1357
 saint francis (pa),1384
-saint joseph's,1386
 saint joseph`s,1386
+saint joseph’s,1386
+saint joseph's,1386
 saint louis,1387
 saint mary's,1388
 saint mary's (ca),1388
-saint peter's,1389
 saint peter`s,1389
+saint peter’s,1389
+saint peter's,1389
 saint-francis-pa,1384
 saint-josephs,1386
+saintlouis,1387
 saint-louis,1387
 saint-marys,1388
 saint-marys-ca,1388
@@ -680,8 +779,9 @@ saint-peters,1389
 sam houston st,1358
 sam houston st.,1358
 sam houston state,1358
-sam-houston-state,1358
 samford,1359
+sam-houston-st,1358
+sam-houston-state,1358
 san diego,1360
 san diego st,1361
 san diego st.,1361
@@ -691,8 +791,10 @@ san jose st,1363
 san jose st.,1363
 san jose state,1363
 san-diego,1360
+san-diego-st,1361
 san-diego-state,1361
 san-francisco,1362
+san-jose-st,1363
 san-jose-state,1363
 santa barbara,1364
 santa clara,1365
@@ -700,6 +802,7 @@ santa-clara,1365
 savannah st,1366
 savannah st.,1366
 savannah state,1366
+savannah-st,1366
 savannah-state,1366
 sc state,1354
 sc upstate,1367
@@ -710,12 +813,16 @@ se missouri st.,1369
 se missouri st.(se,1369
 se missouri state,1369
 seattle,1370
+seattle u,1370
+seattle-u,1370
 seton hall,1371
 seton-hall,1371
 sf austin,1372
+sfa,1372
 siena,1373
 siu - edwardsville,1188
 siu edwardsville,1188
+siue,1188
 siu-edwardsville,1188
 sju (pa),1386
 smu,1374
@@ -731,19 +838,23 @@ south dakota st.,1355
 south dakota state,1355
 south fla.,1378
 south florida,1378
+south-ala,1375
 south-alabama,1375
 south-carolina,1376
+south-carolina-st,1354
 south-carolina-state,1354
 south-carolina-upstate,1367
 south-dakota,1377
+south-dakota-st,1355
 south-dakota-state,1355
-south-florida,1378
 southeast missouri state,1369
 southeast mo. st.,1369
-southeast-missouri-state,1369
 southeastern la.,1368
 southeastern louisiana,1368
+southeastern-la,1368
 southeastern-louisiana,1368
+southeast-missouri-state,1369
+southeast-mo-st,1369
 southern,1380
 southern california,1425
 southern ill.,1356
@@ -759,13 +870,18 @@ southern un,1380
 southern univ,1380
 southern utah,1381
 southern-california,1425
+southern-ill,1356
 southern-illinois,1356
 southern-illinois-edwardsville,1188
 southern-methodist,1374
 southern-miss,1379
 southern-mississippi,1379
+southern-u,1380
 southern-university,1380
 southern-utah,1381
+south-fla,1378
+south-florida,1378
+southwest missouri state,1283
 st bonaventure,1382
 st francis (ny),1383
 st francis (pa),1384
@@ -779,48 +895,53 @@ st louis,1387
 st mary's (ca),1388
 st mary's ca,1388
 st peter's,1389
-st-bonaventure,1382
-st-francis-ny,1383
-st-francis-pa,1384
-st-johns,1385
-st-johns-ny,1385
-st-josephs-pa,1386
-st-peters,1389
 st. bonaventure,1382
 st. francis (bkn),1383
 st. francis (ny),1383
 st. francis (pa),1384
 st. francis brooklyn,1383
 st. francis-ny,1383
+st. john`s (ny),1385
+st. john’s,1385
 st. john's,1385
 st. john's (ny),1385
-st. john`s (ny),1385
 st. joseph's,1386
 st. joseph's pa,1386
-st. mary's,1388
 st. mary`s (ca),1388
+st. mary's,1388
 st. peter's,1389
 stanford,1390
+st-bonaventure,1382
 stephen f. austin,1372
 stephen-f-austin,1372
 stetson,1391
+st-francis-brooklyn,1383
+st-francis-ny,1383
+st-francis-pa,1384
+st-johns,1385
+st-johns-ny,1385
+st-josephs-pa,1386
+st-marys-ca,1388
 stony brook,1392
 stony-brook,1392
+st-peters,1389
 sw missouri st.,1283
 syracuse,1393
 tam c,1394
 tam c. christi,1394
 tcu,1395
 temple,1396
-tenn-martin,1404
 tennessee,1397
 tennessee st,1398
 tennessee st.,1398
 tennessee state,1398
 tennessee tech,1399
+tennessee-chattanooga,1151
 tennessee-martin,1404
+tennessee-st,1398
 tennessee-state,1398
 tennessee-tech,1399
+tenn-martin,1404
 tex.-pan american,1410
 texas,1400
 texas a&m,1401
@@ -837,6 +958,7 @@ texas st,1402
 texas st.,1402
 texas state,1402
 texas tech,1403
+texasa&m,1401
 texas-am,1401
 texas-am-corpus-christi,1394
 texas-arlington,1426
@@ -850,8 +972,11 @@ texas-san antonio,1427
 texas-san antonio(ut,1427
 texas-san-antonio,1427
 texas-southern,1411
+texas-st,1402
 texas-state,1402
 texas-tech,1403
+the citadel,1154
+the-citadel,1154
 tn martin,1404
 toledo,1405
 towson,1406
@@ -866,14 +991,16 @@ ualr,1114
 uc davis,1413
 uc irvine,1414
 uc riverside,1415
+uc santa barb.,1364
 uc santa barbara,1364
 uc-davis,1413
-uc-irvine,1414
-uc-riverside,1415
-uc-santa barbara,1364
 ucf,1416
+uc-irvine,1414
 ucla,1417
 uconn,1163
+uc-riverside,1415
+uc-santa barbara,1364
+uc-santa-barbara,1364
 ucsb,1364
 uic,1227
 ull,1418
@@ -888,6 +1015,9 @@ unc,1314
 unc asheville,1421
 unc greensboro,1422
 unc wilmington,1423
+unc-asheville,1421
+uncg,1422
+uncw,1423
 uni,1320
 university of california,1143
 unlv,1424
@@ -897,18 +1027,20 @@ usc-upstate,1367
 ut arlington,1426
 ut martin,1404
 ut san antonio,1427
-ut-martin,1404
 utah,1428
 utah st,1429
 utah st.,1429
 utah state,1429
 utah valley,1430
 utah valley st.,1430
+utah-st,1429
 utah-state,1429
 utah-valley,1430
 utah-valley-state,1430
+ut-arlington,1426
 utep,1431
 utica,1432
+ut-martin,1404
 utrgv,1410
 utsa,1427
 va commonwealth,1433
@@ -940,14 +1072,15 @@ washington,1449
 washington st,1450
 washington st.,1450
 washington state,1450
+washington-st,1450
 washington-state,1450
 weber st,1451
 weber st.,1451
 weber state,1451
+weber-st,1451
 weber-state,1451
 west texas a&m,1446
 west virginia,1452
-west-virginia,1452
 western caro.,1441
 western carolina,1441
 western ill.,1442
@@ -956,18 +1089,26 @@ western kentucky,1443
 western ky.,1443
 western mich.,1444
 western michigan,1444
+western-caro,1441
 western-carolina,1441
+western-ill,1442
 western-illinois,1442
 western-kentucky,1443
+western-ky,1443
+western-mich,1444
 western-michigan,1444
+west-virginia,1452
 wi green bay,1453
 wi milwaukee,1454
 wichita st,1455
 wichita st.,1455
 wichita state,1455
+wichita-st,1455
+wichitastate,1455
 wichita-state,1455
 william & mary,1456
 william-mary,1456
+william--mary,1456
 winston salem,1445
 winston-salem,1445
 winston-salem-state,1445
@@ -983,6 +1124,7 @@ wofford,1459
 wright st,1460
 wright st.,1460
 wright state,1460
+wright-st,1460
 wright-state,1460
 wyoming,1461
 xavier,1462
@@ -990,4 +1132,5 @@ yale,1463
 youngstown st,1464
 youngstown st.,1464
 youngstown state,1464
+youngstown-st,1464
 youngstown-state,1464
