@@ -4,8 +4,8 @@
 \alias{simTourney}
 \title{Simulate the NCAA tournament}
 \usage{
-simTourney(preds, N = 1000, year = 2015, progress = TRUE,
-  upset_bias = 0)
+simTourney(preds, N = 1000, year = 2018, progress = TRUE,
+  upset_bias = 0, w = NULL)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
@@ -19,6 +19,8 @@ contain multiple seasons}
 
 \item{upset_bias}{If you want more upsets in your bracket, a little upset
 bias will give close games to the underdog.}
+
+\item{w}{Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.}
 }
 \value{
 a data.table

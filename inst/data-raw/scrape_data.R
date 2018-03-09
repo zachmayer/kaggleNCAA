@@ -2,6 +2,7 @@
 library('data.table')
 library('pbapply')
 library('XML')
+library('RCurl')
 library('stringdist')
 library('stringi')
 rm(list=ls(all=TRUE))
@@ -12,14 +13,14 @@ set.seed(8865)
 spell <- fread('inst/kaggle_data/TeamSpellings.csv')
 
 #Manually add some spellings
-new1 <- copy(spell[name_spelling == 'citadel',])
-new1[,name_spelling := 'the citadel']
+new1 <- copy(spell[TeamNameSpelling == 'citadel',])
+new1[,TeamNameSpelling := 'the citadel']
 
-new2 <- copy(spell[name_spelling == 'fort wayne(ipfw)',])
-new2[,name_spelling := 'fort wayne']
+new2 <- copy(spell[TeamNameSpelling == 'fort wayne(ipfw)',])
+new2[,TeamNameSpelling := 'fort wayne']
 
-new3 <- copy(spell[name_spelling == 'fort wayne(ipfw)',])
-new3[,name_spelling := 'ft wayne']
+new3 <- copy(spell[TeamNameSpelling == 'fort wayne(ipfw)',])
+new3[,TeamNameSpelling := 'ft wayne']
 
 spell <- rbindlist(list(
   spell,
@@ -29,9 +30,10 @@ spell <- rbindlist(list(
 ))
 
 #Scrape ratings
-dat_list <- pblapply(2002:2017, function(x){
+dat_list <- pblapply(2002:2018, function(x){
   Sys.sleep(1)
-  out <- readHTMLTable(paste0('http://kenpom.com/index.php?y=', x))[[1]]
+  page <- getURL(paste0('https://kenpom.com/index.php?y=', x))
+  out <- readHTMLTable(page, stringsAsFactors = F)[[1]]
   data.table(
     Season = x,
     out
@@ -73,13 +75,13 @@ cleanup <- function(x){
   return(x)
 }
 dat[,Team := cleanup(Team)]
-spell[,name_spelling := cleanup(name_spelling)]
+spell[,TeamNameSpelling := cleanup(TeamNameSpelling)]
 
-matches <- amatch(dat[['Team']], spell[['name_spelling']], method='cosine')
+matches <- amatch(dat[['Team']], spell[['TeamNameSpelling']], method='cosine')
 
-dat[,team_id := spell[matches, 'team_id']]
-dat[,alternative_spelling := spell[matches, 'name_spelling']]
-dat[is.na(team_id),]
+dat[,TeamID := spell[matches, 'TeamID']]
+dat[,alternative_spelling := spell[matches, 'TeamNameSpelling']]
+dat[is.na(TeamID),]
 dat[,match_rating := 1-stringdist(Team, alternative_spelling, method='cosine')]
 dat[Team != alternative_spelling,][order(match_rating),unique(data.table(Team, alternative_spelling, match_rating))]
 

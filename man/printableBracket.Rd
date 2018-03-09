@@ -4,7 +4,7 @@
 \alias{printableBracket}
 \title{Generate a printable NCAA bracket}
 \usage{
-printableBracket(bracket, add_seed = TRUE, add_prob = TRUE)
+printableBracket(bracket, add_seed = TRUE, add_prob = TRUE, w = NULL)
 }
 \arguments{
 \item{bracket}{A bracket to print off}
@@ -12,6 +12,8 @@ printableBracket(bracket, add_seed = TRUE, add_prob = TRUE)
 \item{add_seed}{Add the team's seed in parenthesis}
 
 \item{add_prob}{Add the team's probability of making it this far}
+
+\item{w}{Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.}
 }
 \description{
 Given an NCAA tournament bracket (a list of slots and who won

@@ -7,15 +7,6 @@
 #' @keywords data
 NULL
 
-#' sample_submission.csv from Kaggle
-#'
-#' @name sample_submission
-#' @docType data
-#' @author Zach Mayer \email{zach.mayer@@gmail.com}
-#' @references \url{https://www.kaggle.com/c/march-machine-learning-mania-2016/data}
-#' @keywords data
-NULL
-
 #' teams.csv from Kaggle
 #'
 #' @name teams
@@ -126,12 +117,43 @@ NULL
 NULL
 
 #' Ken Pomery's Ratings
-#' a printable bracket.
 #'
 #' @name PomeryRatings
 #' @docType data
 #' @author Zach Mayer \email{zach.mayer@@gmail.com}
 #' @references
 #' \url{http://kenpom.com/}
+#' @keywords data
+NULL
+
+#' Cities that have basketball games
+#'
+#' @name cities
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @keywords data
+NULL
+
+#' The city each game is played at
+#'
+#' @name game_cities
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @keywords data
+NULL
+
+#' A simple, seed-based submission for the women's tournament
+#'
+#' @name sample_submission_women
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
+#' @keywords data
+NULL
+
+#' A simple, seed-based submission for the men's tournament
+#'
+#' @name sample_submission_men
+#' @docType data
+#' @author Zach Mayer \email{zach.mayer@@gmail.com}
 #' @keywords data
 NULL

@@ -11,18 +11,27 @@
 #' @param progress If TRUE, a progress bar will be printed
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
+#' @param w Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.
 #' @return a data.table
 #' @importFrom data.table :=
 #' @export
-simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
+simTourney <- function(
+  preds, N=1000, year=2018, progress=TRUE, upset_bias=0, w=NULL){
   utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
   preds <- preds[season==year,]
 
+  #Decide men or women
+  if(is.null(w)){
+    w <- preds[1,women]
+    message(paste('assuming women =', w))
+  }
+  stopifnot(w==0 | w == 1)
+
   #Join slots to the predictions
   n1 <- nrow(preds)
-  preds <- merge(preds, all_slots, by=c('season', 'team_1', 'team_2'))
+  preds <- merge(preds, all_slots, by=c('season', 'teamid_1', 'teamid_2', 'women'))
   stopifnot(n1 == nrow(preds))
 
   #Determine seeds
@@ -31,7 +40,7 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
 
   #Add some columns for tracking the simulation
   preds[, rand := stats::runif(.N),]
-  preds[, winner := ifelse(pred > rand, team_1, team_2)]
+  preds[, winner := ifelse(pred > rand, teamid_1, teamid_2)]
   preds[, keep := 1L]
 
   #Add upset bias
@@ -54,20 +63,20 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
       preds[seed_1_int > seed_2_int, rand := rand - upset_bias]
       preds[seed_1_int < seed_2_int, rand := rand + upset_bias]
     }
-    preds[, winner := ifelse(pred > rand, team_1, team_2)]
+    preds[, winner := ifelse(pred > rand, teamid_1, teamid_2)]
     sim_tourney_internal(preds)
     })
 
   #Aggregate results
   sims <- data.table::rbindlist(sims_list)
-  data.table::setkeyv(sims, c('slot', 'winner'))
-  sims <- sims[,list(count=.N), by=c('slot', 'winner')]
+  data.table::setkeyv(sims, c('women', 'slot', 'winner'))
+  sims <- sims[,list(count=.N), by=c('women', 'slot', 'winner')]
   sims[, count := count + stats::runif(.N)/1e12]
 
   #Add omitted zeros
-  all_possible_slots_team_1 <- all_slots[season==year, list(slot, winner=team_1)]
-  all_possible_slots_team_2 <- all_slots[season==year, list(slot, winner=team_2)]
-  all_possible_slots <- unique(rbind(all_possible_slots_team_1, all_possible_slots_team_2))
+  all_possible_slots_teamid_1 <- all_slots[season==year, list(slot, winner=teamid_1)]
+  all_possible_slots_teamid_2 <- all_slots[season==year, list(slot, winner=teamid_2)]
+  all_possible_slots <- unique(rbind(all_possible_slots_teamid_1, all_possible_slots_teamid_2))
   sims <- merge(all_possible_slots, sims, all.x=TRUE, by=c('slot', 'winner'))
   sims[is.na(count), count := 0L]
   sims[, prob := count / N]
@@ -94,7 +103,7 @@ simTourney <- function(preds, N=1000, year=2015, progress=TRUE, upset_bias=0){
 #' @return a data.table
 #' @importFrom data.table :=
 #' @export
-walkTourney <- function(preds, year=2015, upset_bias=0){
+walkTourney <- function(preds, year=2018, upset_bias=0){
   utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
@@ -102,7 +111,7 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
 
   #Join slots to the predictions
   n1 <- nrow(preds)
-  preds <- merge(preds, all_slots, by=c('season', 'team_1', 'team_2'))
+  preds <- merge(preds, all_slots, by=c('season', 'teamid_1', 'teamid_2', 'women'))
   stopifnot(n1 == nrow(preds))
 
   #Determine seeds
@@ -121,15 +130,15 @@ walkTourney <- function(preds, year=2015, upset_bias=0){
   preds[, pred := pred + stats::runif(.N, min = -1 * small_num, max = small_num)]
 
   #Decide a winner
-  preds[, winner := ifelse(pred > rand, team_1, team_2)]
+  preds[, winner := ifelse(pred > rand, teamid_1, teamid_2)]
 
   #Run the simulation
   preds[, keep := 1L]
   sims <- sim_tourney_internal(preds)
 
   #Add each game's probs
-  sims <- merge(sims, preds[,list(team_1, team_2, pred)], by=c('team_1', 'team_2'), all.x=TRUE)
-  sims[,pred := ifelse(team_1 == winner, pred, 1-pred)]
+  sims <- merge(sims, preds[,list(teamid_1, teamid_2, pred)], by=c('teamid_1', 'teamid_2'), all.x=TRUE)
+  sims[,pred := ifelse(teamid_1 == winner, pred, 1-pred)]
 
   #Aggregate results
   data.table::setkeyv(sims, c('slot', 'winner'))
@@ -159,29 +168,29 @@ sim_tourney_internal <- function(preds){
   #Evaluate the playin rounds
   if(all_rounds[1] == 0){
     r <- 0L
-    round_team_1 <- preds[round == r, list(slot=next_slot, team_1=winner, keep_team_1=1L)]
-    round_team_2 <- preds[round == r ,list(slot=next_slot, team_2=winner, keep_team_2=1L)]
-    preds <- merge(preds, round_team_1, by=c('slot', 'team_1'), all.x=TRUE)
-    preds <- merge(preds, round_team_2, by=c('slot', 'team_2'), all.x=TRUE)
-    preds[is.na(keep_team_1) & team_1_playedin == (r + 1L) & round == 1L, keep := 0L]
-    preds[is.na(keep_team_2) & team_2_playedin == (r + 1L) & round == 1L, keep := 0L]
+    round_teamid_1 <- preds[round == r, list(slot=next_slot, teamid_1=winner, keep_teamid_1=1L)]
+    round_teamid_2 <- preds[round == r ,list(slot=next_slot, teamid_2=winner, keep_teamid_2=1L)]
+    preds <- merge(preds, round_teamid_1, by=c('slot', 'teamid_1'), all.x=TRUE)
+    preds <- merge(preds, round_teamid_2, by=c('slot', 'teamid_2'), all.x=TRUE)
+    preds[is.na(keep_teamid_1) & teamid_1_playedin == (r + 1L) & round == 1L, keep := 0L]
+    preds[is.na(keep_teamid_2) & teamid_2_playedin == (r + 1L) & round == 1L, keep := 0L]
     preds <- preds[keep==1L,]
-    preds[, c('keep_team_1', 'keep_team_2') := NULL]
+    preds[, c('keep_teamid_1', 'keep_teamid_2') := NULL]
     all_rounds <- all_rounds[2:length(all_rounds)]
   }
 
   #Evaluate the regular rounds
   for(r in 1:5){
-    round_team_1 <- preds[round == r, list(slot=next_slot, team_1=winner, keep_team_1=1L)]
-    round_team_2 <- preds[round == r ,list(slot=next_slot, team_2=winner, keep_team_2=1L)]
-    preds <- merge(preds, round_team_1, by=c('slot', 'team_1'), all.x=TRUE)
-    preds <- merge(preds, round_team_2, by=c('slot', 'team_2'), all.x=TRUE)
-    preds[is.na(keep_team_1) & round == (r + 1L), keep := 0L]
-    preds[is.na(keep_team_2) & round == (r + 1L), keep := 0L]
+    round_teamid_1 <- preds[round == r, list(slot=next_slot, teamid_1=winner, keep_teamid_1=1L)]
+    round_teamid_2 <- preds[round == r ,list(slot=next_slot, teamid_2=winner, keep_teamid_2=1L)]
+    preds <- merge(preds, round_teamid_1, by=c('slot', 'teamid_1'), all.x=TRUE)
+    preds <- merge(preds, round_teamid_2, by=c('slot', 'teamid_2'), all.x=TRUE)
+    preds[is.na(keep_teamid_1) & round == (r + 1L), keep := 0L]
+    preds[is.na(keep_teamid_2) & round == (r + 1L), keep := 0L]
     preds <- preds[keep==1L,]
-    preds[, c('keep_team_1', 'keep_team_2') := NULL]
+    preds[, c('keep_teamid_1', 'keep_teamid_2') := NULL]
   }
-  preds <- preds[,list(slot, round, team_1, team_2, winner)]
+  preds <- preds[,list(slot, round, teamid_1, teamid_2, women, winner)]
   data.table::setkeyv(preds, 'slot')
 
   return(preds)
