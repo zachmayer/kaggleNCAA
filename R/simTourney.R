@@ -1,3 +1,5 @@
+# TODO: Add function to give top 10 champtions + probs, given a simulation
+
 #' @title Simulate the NCAA tournament
 #'
 #' @description Given a parsed NCAA bracket, simulate the tournament

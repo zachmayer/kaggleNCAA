@@ -7,10 +7,8 @@ library(devtools)
 library(geosphere)
 library(stringi)
 library(splines)
-
-# TODO: ADD WOMEN'S COMPACT RESULTS!
-# TODO: FUNCTION TO DO MEN/WOMEN JOIN + CHECK
-# TODO: FIX BRAKCET PRINTING
+library(pbapply)
+library(lawstat)
 
 ##########################################
 # Quick check on Women's data
@@ -85,7 +83,15 @@ tourney_slots[,season_new := NULL]
 # Extra data
 ##########################################
 
-#ADD: Spreads (need a new source!)
+# Men's secondary tourney data - CONSIDER ADDING NEXT YEAR
+# tourney_compact_results2 <- fread('inst/kaggle_data/SecondaryTourneyCompactResults.csv')
+# tourney_compact_results[,tourney := 'madness']
+# tourney_compact_results2[,women := 0]
+# setnames(tourney_compact_results2, tolower(names(tourney_compact_results2)))
+# setnames(tourney_compact_results2, 'secondarytourney', 'tourney')
+# tourney_compact_results <- rbind(tourney_compact_results, tourney_compact_results2, fill=T)
+
+#ADD: Vegas Spreads (need a new source!)
 #ADD: Massey Ordinals (lots of 'em— median?)
 
 ##########################################
@@ -343,7 +349,7 @@ write.csv(sample_submission_women, 'inst/kaggle_data/seed_benchmark_women.csv', 
 write.csv(sample_submission_men, 'inst/kaggle_data/seed_benchmark_men.csv', row.names=F)
 
 ##########################################
-# Save data
+# Checks
 ##########################################
 
 #set slot order for all slot objects
@@ -363,6 +369,10 @@ sink <- regular_season_compact_results[women==1, stopifnot(all(THIS_YEAR %in% se
 
 sink <- regular_season_detailed_results[women==0, stopifnot(all(THIS_YEAR %in% season))]
 # sink <- regular_season_detailed_results[women==1, stopifnot(all(THIS_YEAR %in% season))]
+
+##########################################
+# Save
+##########################################
 
 use_data(
   seed_print_positions,
