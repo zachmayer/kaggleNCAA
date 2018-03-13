@@ -15,29 +15,37 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+library('kaggleNCAA')
+data(sample_submission_men)
+write.csv(sample_submission_men, 'seed_benchmark_men.csv', row.names=F)
 ```
 
 #Kaggle NCAA Bracket Simulator
-Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup).  Install the package with:
+Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup).  
+
+## First, re-install the package:
 ```{r, echo = TRUE, eval=FALSE}
 devtools::install_github('zachmayer/kaggleNCAA')
 ```
-Then simulate a tournament and print a bracket:
+
+## Now load the tournment from a csv
+This `seed_benchmark_men.csv` is a simple seed-based benchmark I made.  Turn it into a bracket with 4 functions:
+- `parseBracket` to load the data from a .csv
+- `simTourney` to simulate the tourney (you can also use `walkTourney`).  Use at least 1000 simulations (more is better).  One day I will parallelize this =D
+- `extractBracket` to extract a bracket from the simulation results
+- `printableBracket` to actually print the bracket
+```{r} data(sample_submission_men, package='kaggleNCAA')```
 ```{r sim_bracket, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
 set.seed(1)
 library('kaggleNCAA')
-data(sample_submission_men)
-f <- tempfile()
-write.csv(sample_submission_men, f, row.names=F)
-dat <- parseBracket(f)
-unlink(f)
-sim <- simTourney(dat, 100, year=2018, progress=TRUE)
+dat <- parseBracket('seed_benchmark_men.csv')
+sim <- simTourney(dat, 1000, progress=TRUE)
 bracket <- extractBracket(sim)
 printableBracket(bracket)
 ```
 If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
 ```{r walk_bracket, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
-bracket <- walkTourney(dat, year=2018)
+bracket <- walkTourney(dat)
 printableBracket(bracket)
 ```
 Note in this case that the probabilities associated with the team making it to a given round will be incorrect

@@ -4,24 +4,26 @@
 Kaggle NCAA Bracket Simulator
 =============================
 
-Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup). Install the package with:
+Simulate the NCAA tournament based on a kaggle-format bracket (with predictions for every possible matchup).
+
+First, re-install the package:
+------------------------------
 
 ``` r
 devtools::install_github('zachmayer/kaggleNCAA')
 ```
 
-Then simulate a tournament and print a bracket:
+Now load the tournment from a csv
+---------------------------------
+
+This `seed_benchmark_men.csv` is a simple seed-based benchmark I made. Turn it into a bracket with 4 functions: - `parseBracket` to load the data from a .csv - `simTourney` to simulate the tourney (you can also use `walkTourney`). Use at least 1000 simulations (more is better). One day I will parallelize this =D - `extractBracket` to extract a bracket from the simulation results - `printableBracket` to actually print the bracket `{r} data(sample_submission_men, package='kaggleNCAA')`
 
 ``` r
 set.seed(1)
 library('kaggleNCAA')
-data(sample_submission_men)
-f <- tempfile()
-write.csv(sample_submission_men, f, row.names=F)
-dat <- parseBracket(f)
+dat <- parseBracket('seed_benchmark_men.csv')
 #> Assuming men's bracket
-unlink(f)
-sim <- simTourney(dat, 100, year=2018, progress=TRUE)
+sim <- simTourney(dat, 1000, progress=TRUE)
 #> assuming women = 0
 bracket <- extractBracket(sim)
 printableBracket(bracket)
@@ -31,7 +33,7 @@ printableBracket(bracket)
 ![](README-sim_bracket-1.png) If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
 
 ``` r
-bracket <- walkTourney(dat, year=2018)
+bracket <- walkTourney(dat)
 printableBracket(bracket)
 #> assuming women = 0
 ```
