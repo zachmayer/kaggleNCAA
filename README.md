@@ -22,7 +22,7 @@ This `seed_benchmark_men.csv` is a simple seed-based benchmark I made. Turn it i
  -  `extractBracket` to extract a bracket from the simulation results
  -  `printableBracket` to actually print the bracket
 
-(Load my data with `{r} data(sample_submission_men, package='kaggleNCAA')` if you want to just use the seeds)
+(Load my data with `data(sample_submission_men, package='kaggleNCAA')` if you want to just use the seeds)
 
 ``` r
 set.seed(1)
