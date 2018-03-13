@@ -16,7 +16,10 @@ devtools::install_github('zachmayer/kaggleNCAA')
 Now load the tournment from a csv
 ---------------------------------
 
-This `seed_benchmark_men.csv` is a simple seed-based benchmark I made. Turn it into a bracket with 4 functions: - `parseBracket` to load the data from a .csv - `simTourney` to simulate the tourney (you can also use `walkTourney`). Use at least 1000 simulations (more is better). One day I will parallelize this =D - `extractBracket` to extract a bracket from the simulation results - `printableBracket` to actually print the bracket `{r} data(sample_submission_men, package='kaggleNCAA')`
+This `seed_benchmark_men.csv` is a simple seed-based benchmark I made. Turn it into a bracket with 4 functions: \* `parseBracket` to load the data from a .csv
+\* `simTourney` to simulate the tourney (you can also use `walkTourney`). Use at least 1000 simulations (more is better). One day I will parallelize this =D
+\* `extractBracket` to extract a bracket from the simulation results
+\* `printableBracket` to actually print the bracket s `{r} data(sample_submission_men, package='kaggleNCAA')`
 
 ``` r
 set.seed(1)
