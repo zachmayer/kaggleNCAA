@@ -29,7 +29,7 @@ devtools::install_github('zachmayer/kaggleNCAA')
 ```
 
 ## Now load the tournment from a csv
-This `seed_benchmark_men.csv` is a simple seed-based benchmark I made.  Turn it into a bracket with 4 functions: 
+`seed_benchmark_men.csv` is a simple seed-based benchmark I made.  Turn it into a bracket with 4 functions: 
 
  - `parseBracket` to load the data from a .csv     
  - `simTourney` to simulate the tourney (you can also use `walkTourney`).  Use at least 1000 simulations (more is better).  One day I will parallelize this =D    
@@ -40,10 +40,10 @@ This `seed_benchmark_men.csv` is a simple seed-based benchmark I made.  Turn it 
 ```{r sim_bracket, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
 set.seed(1)
 library('kaggleNCAA')
-dat <- parseBracket('seed_benchmark_men.csv')
-sim <- simTourney(dat, 1000, progress=TRUE)
-bracket <- extractBracket(sim)
-printableBracket(bracket)
+dat <- parseBracket('seed_benchmark_men.csv', w=0)  # w=0 for men
+sim <- simTourney(dat, 1000, progress=TRUE)  # w=0 for men
+bracket <- extractBracket(sim)  # w=0 for men
+printableBracket(bracket)  # w=0 for men
 ```
 If simulation's not your thing (e.g. your predicted probabilities are transitive), you can also "walk" forward through the tournament, which is much faster:
 ```{r walk_bracket, echo = TRUE, fig.show='hold', dev='png', fig.width=11, fig.height=8.5, dpi=250}
