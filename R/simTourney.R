@@ -14,12 +14,20 @@
 #' @param upset_bias If you want more upsets in your bracket, a little upset
 #' bias will give close games to the underdog.
 #' @param w Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.
+#' @param parallel if TRUE, run the simulations in parallel
 #' @return a data.table
 #' @importFrom data.table :=
+#' @importFrom foreach %dopar%
+#' @importFrom foreach foreach
 #' @export
 simTourney <- function(
-  preds, N=1000, year=2018, progress=TRUE, upset_bias=0, w=NULL){
+  preds, N=1000, year=2018, progress=TRUE, upset_bias=0, w=NULL, parallel=FALSE){
   utils::data('all_slots', package='kaggleNCAA', envir=environment())
+
+  #Checks
+  if(progress & parallel){
+    stop("Can't use a progress bar in parallel.  Please set either progress or parallel to FALSE")
+  }
 
   #Subset the data
   preds <- preds[season==year,]
@@ -54,6 +62,13 @@ simTourney <- function(
   #Decide on progress bars
   if(progress){
     apply_fun <- pbapply::pblapply
+  } else if(parallel){
+    apply_fun <- function(idx, fun, ...){
+      foreach(
+        i=idx,
+        packages='kaggleNCAA'
+        ) %dopar% fun(i, ...)
+    }
   } else{
     apply_fun <- lapply
   }
@@ -80,9 +95,20 @@ simTourney <- function(
   all_possible_slots_teamid_2 <- all_slots[season==year, list(slot, winner=teamid_2)]
   all_possible_slots <- unique(rbind(all_possible_slots_teamid_1, all_possible_slots_teamid_2))
   sims <- merge(all_possible_slots, sims, all.x=TRUE, by=c('slot', 'winner'))
-  sims[is.na(count), count := 0L]
+  sims[,never_occured := as.integer(is.na(count))]
+  sims[is.na(count), count := 0L] # Never occured in the simulation
+  sims[is.na(women), women := w] # Never occured in the simulation
   sims[, prob := count / N]
   sims <- sims[order(count, decreasing=TRUE)]
+
+  #Check "convergence"
+  slots_simulated <- sims[,sum(never_occured)/.N]
+  if(slots_simulated > .80){
+    msg <- paste0(
+      round(slots_simulated, 3) * 100,
+      '% of possible games were not seen in the simulation.  Consider higher N')
+    message(msg)
+  }
 
   #Add year and return
   sims[, season := year]

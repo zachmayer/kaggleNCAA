@@ -4,4 +4,4 @@
 ^README\.Rmd$
 ^README-*\.png$
 \.png$
-\.csv$
+^seed_benchmark_men.csv$

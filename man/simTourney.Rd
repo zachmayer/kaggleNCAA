@@ -5,7 +5,7 @@
 \title{Simulate the NCAA tournament}
 \usage{
 simTourney(preds, N = 1000, year = 2018, progress = TRUE,
-  upset_bias = 0, w = NULL)
+  upset_bias = 0, w = NULL, parallel = FALSE)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}
@@ -21,6 +21,8 @@ contain multiple seasons}
 bias will give close games to the underdog.}
 
 \item{w}{Women's or Men's bracket.  1 for women, 0 for men.  If NULL, will be infered from the first row of data.}
+
+\item{parallel}{if TRUE, run the simulations in parallel}
 }
 \value{
 a data.table

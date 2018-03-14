@@ -1,7 +1,7 @@
 Package: kaggleNCAA
 Type: Package
 Title: Simulate the NCAA tournament
-Version: 4.0.0
+Version: 4.0.1
 Date: 2015-02-34
 Authors@R: person(c("Zachary", "A."), "Mayer", role = c("aut", "cre"),
     email = "zach.mayer@gmail.com")
@@ -22,5 +22,6 @@ Imports:
     pbapply,
     graphics,
     stats,
+    foreach,
     utils
 RoxygenNote: 6.0.1
