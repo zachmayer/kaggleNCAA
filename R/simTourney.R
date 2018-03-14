@@ -63,11 +63,8 @@ simTourney <- function(
   if(progress){
     apply_fun <- pbapply::pblapply
   } else if(parallel){
-    apply_fun <- function(idx, fun, ...){
-      foreach(
-        i=idx,
-        packages='kaggleNCAA'
-        ) %dopar% fun(i, ...)
+    apply_fun <- function(idx, fun){
+      foreach(i=idx) %dopar% fun(i)
     }
   } else{
     apply_fun <- lapply
@@ -83,6 +80,7 @@ simTourney <- function(
     preds[, winner := ifelse(pred > rand, teamid_1, teamid_2)]
     sim_tourney_internal(preds)
     })
+  stopifnot(length(sims_list) == N)
 
   #Aggregate results
   sims <- data.table::rbindlist(sims_list)

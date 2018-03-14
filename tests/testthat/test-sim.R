@@ -77,7 +77,7 @@ test_that("We can simulate a tourney in parallel - men", {
   #Test all years in parallel
   foreach::registerDoSEQ()
   for(year in sort(unique(dat$season))){
-    sim <- simTourney(dat, N=5, year=year, progress=FALSE, parallel=TRUE)
+    sim <- simTourney(dat, N=10, year=year, progress=FALSE, parallel=TRUE)
     expect_gt(nrow(sim[slot=='R6CH',]), 63)
     expect_is(sim, 'data.table')
     expect_true(!anyNA(sim))
