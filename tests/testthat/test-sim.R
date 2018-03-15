@@ -4,15 +4,15 @@ test_that("We can simulate a tourney - women", {
 
   #Test all years without progress bar
   for(year in sort(unique(dat$season))){
-    sim <- simTourney(dat, N=5, year=year, progress=FALSE)
-    sim <- simTourney(dat, N=5, upset_bias=0.05, year=year, progress=FALSE)
+    sim <- simTourney(dat, N=5, year=year, progress=FALSE, w=1)
+    sim <- simTourney(dat, N=5, upset_bias=0.05, year=year, progress=FALSE, w=1)
     expect_gt(nrow(sim[slot=='R6CH',]), 63)
     expect_is(sim, 'data.table')
     expect_true(!anyNA(sim))
   }
 
   #Test one year with progress bar
-  sim <- simTourney(dat, N=5, year=year, progress=TRUE)
+  sim <- simTourney(dat, N=5, year=year, progress=TRUE, w=1)
   expect_gt(nrow(sim[slot=='R6CH',]), 63)
   expect_is(sim, 'data.table')
   expect_true(!anyNA(sim))
