@@ -3,7 +3,6 @@
 \docType{data}
 \name{tourney_compact_results}
 \alias{tourney_compact_results}
-\alias{tourney_compact_results}
 \title{tourney_compact_results.csv from Kaggle}
 \description{
 tourney_compact_results.csv from Kaggle
