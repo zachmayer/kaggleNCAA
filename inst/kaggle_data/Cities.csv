@@ -304,7 +304,6 @@ CityID,City,State
 4303,San Diego,CA
 4304,San Francisco,CA
 4305,San Jose,CA
-4306,San Juan,
 4307,San Juan,PR
 4308,San Luis Obispo,CA
 4309,San Marcos,TX
@@ -373,49 +372,51 @@ CityID,City,State
 4372,Worcester,MA
 4373,Youngstown,OH
 4374,Ypsilanti,MI
-4375,Allston,MA
 4376,Biloxi,MS
-4377,Binghampton,NY
-4378,Binghamton,NY
-4379,Cantonsville,MD
-4380,Colorado Springs,CO
-4381,Columbia,MO
 4382,Freeport,BA
 4383,Guaynabo,PR
-4384,Guilderland,NY
 4385,Laie,HI
-4386,Maui,HI
 4387,Moline,IL
-4388,Mount Pleasant,MI
 4389,New York City,NY
 4390,North Charleston,SC
 4391,Ocala,FL
 4392,Panama City,FL
-4393,Portsmouth,VA
-4394,Potatello,ID
-4395,Ralston,NE
 4396,St. Charles,MO
-4397,Starksville,MS
-4398,Teaneck,NJ
 4399,Trujillo Alto,PR
-4400,Tuscon,AZ
-4401,University,MS
 4402,Upper Marlboro,MD
 4403,Wailuku,HI
 4404,Winter Park,FL
-4405,Fairborn,OH
 4406,Garden City,NY
 4407,Great Falls,MT
 4408,Reading,PA
 4409,Uniondale,NY
 4410,Belfast,IR
-4411,George Town,CI
 4412,Montego Bay,JA
 4413,Nassau,BA
 4414,Frisco,TX
 4415,Grand Cayman,CI
 4416,Miami Shores,FL
 4417,Midland,MI
-4418,Landover,MD
-4419,Pontiac,MI
-4420,St. Petersburg,FL
+4421,Alexandria,LA
+4422,Bimini,BA
+4423,Bloomington,IL
+4424,Carolina,PR
+4425,Clarksdale,MS
+4426,Cupertino,CA
+4427,Davie,FL
+4428,East Peoria,IL
+4429,Fort Lauderdale,FL
+4430,Fort Mill,SC
+4431,Grand Rapids,MI
+4432,Hilo,HI
+4433,Houma,LA
+4434,Jennings,LA
+4435,Kennewick,WA
+4436,Livonia,MI
+4437,Lucaya,BA
+4438,Melbourne,FL
+4439,Moorehead,MS
+4440,Mt. Pleasant,SC
+4441,Niagara University,NY
+4442,Toronto,ON
+4443,West Palm Beach,FL

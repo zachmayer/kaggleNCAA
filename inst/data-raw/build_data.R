@@ -33,7 +33,7 @@ if(FALSE){
 ##########################################
 # Base Kaggle Data
 ##########################################
-
+THIS_YEAR <- 2018
 load_both <- function(filename, base_dir='inst/kaggle_data/', check_year=THIS_YEAR){
   W <- fread(paste0(base_dir, 'W', filename))
   M <- fread(paste0(base_dir,  '', filename))
@@ -53,8 +53,9 @@ load_both <- function(filename, base_dir='inst/kaggle_data/', check_year=THIS_YE
 }
 
 # Load Sample submission first
-sample_submission <- load_both('SampleSubmission.csv', check_year=NULL)
-THIS_YEAR <- sample_submission[,as.integer(sort(unique(sapply(strsplit(id, '_'), '[[', 1))))]
+sample_submission <- load_both('SampleSubmission.csv', check_year=THIS_YEAR)
+CHK <- sample_submission[,as.integer(sort(unique(sapply(strsplit(id, '_'), '[[', 1))))]
+stopifnot(CHK == THIS_YEAR)
 sample_submission_W <- sample_submission[women == 1,]
 sample_submission_M <- sample_submission[women == 0,]
 
@@ -64,8 +65,7 @@ teams <- load_both('Teams.csv')
 regular_season_compact_results <- load_both('RegularSeasonCompactResults.csv')
 tourney_compact_results <- load_both('NCAATourneyCompactResults.csv')
 tourney_seeds <- load_both('NCAATourneySeeds.csv')
-tourney_seeds[season==2018 & teamid %in% c(3107, 3124),]
-
+tourney_seeds[season==THIS_YEAR & teamid %in% c(3107, 3124),]
 
 tourney_slots <- load_both('NCAATourneySlots.csv')
 cities <- load_both('Cities.csv')
@@ -78,11 +78,11 @@ all_w_seasons = data.table(
   women=1,
   season_new=tourney_slots[,sort(unique(season))]
 )
-stopifnot(2018 %in% all_w_seasons$season_new)
+stopifnot(THIS_YEAR %in% all_w_seasons$season_new)
 tourney_slots = merge(tourney_slots, all_w_seasons, by='women', all=T, allow.cartesian=TRUE)
 tourney_slots[is.na(season) & women == 1,season := season_new]
 tourney_slots[,season_new := NULL]
-stopifnot(tourney_slots[season==2018,any(women==1)])
+stopifnot(tourney_slots[season==THIS_YEAR,any(women==1)])
 
 ##########################################
 # Extra data
@@ -180,7 +180,7 @@ all_slots <- merge(all_slots, tourney_seeds, by=c('women', 'season', 'seed'), al
 all_slots <- merge(all_slots, all_slots, by=c('women', 'season', 'slot'), suffixes=c('_1', '_2'), allow.cartesian=TRUE)
 sink <- all_slots[women==0, stopifnot(all(THIS_YEAR %in% season))]
 sink <- all_slots[women==1, stopifnot(all(THIS_YEAR %in% season))]
-all_slots[teamid_1 == 3107 & teamid_2 == 3124 & season == 2018,]
+all_slots[teamid_1 == 3107 & teamid_2 == 3124 & season == THIS_YEAR,]
 
 #Add round
 all_slots[, round := as.integer(NA)]
@@ -311,30 +311,30 @@ team1 <- tmp_dat[,list(
   score_1, score_2)]
 team1[id == '2014_1107_1110',]
 team1[id == '2014_1107_1196',]
-team1[id == '2018_3107_3124',]
+team1[id == 'THIS_YEAR_3107_3124',]
 
 team2 <- tmp_dat[,list(
   id, women, season,
   teamid_1=teamid_2, teamid_2=teamid_1,
   score_1=score_2, score_2=score_1)]
-team2[id == '2018_3107_3124',]
+team2[id == 'THIS_YEAR_3107_3124',]
 
 tmp_dat <- rbindlist(list(team1, team2))
 rm(team1, team2)
 gc(reset=TRUE)
-tmp_dat[id == '2018_3107_3124',]
+tmp_dat[id == 'THIS_YEAR_3107_3124',]
 
 #Add seeds
-all_slots[teamid_1 == 3107 & teamid_2 == 3124 & season == 2018,]
+all_slots[teamid_1 == 3107 & teamid_2 == 3124 & season == THIS_YEAR,]
 tmp_dat_2 <- all_slots[,list(women, season, teamid_1, teamid_2, seed_1, seed_2)]
 tmp_dat_2[, seed_1 := as.integer(gsub('[[:alpha:]]', '', seed_1))]
 tmp_dat_2[, seed_2 := as.integer(gsub('[[:alpha:]]', '', seed_2))]
 tmp_dat_2[,seed_diff := seed_1 - seed_2]
 tmp_dat_2[,c('seed_1', 'seed_2') := NULL]
-tmp_dat_2[teamid_1 == 3107 & teamid_2 == 3124 & season == 2018,]
+tmp_dat_2[teamid_1 == 3107 & teamid_2 == 3124 & season == THIS_YEAR,]
 
 tmp_dat <- merge(tmp_dat, tmp_dat_2, by=c('women', 'season', 'teamid_1', 'teamid_2'))
-tmp_dat[id == '2018_3107_3124',]
+tmp_dat[id == 'THIS_YEAR_3107_3124',]
 
 #Model and Predict
 tmp_dat[,won := as.integer(score_1 > score_2)]
@@ -382,7 +382,7 @@ sink <- regular_season_compact_results[women==1, stopifnot(all(THIS_YEAR %in% se
 
 sink <- regular_season_detailed_results[women==0, stopifnot(all(THIS_YEAR %in% season))]
 # sink <- regular_season_detailed_results[women==1, stopifnot(all(THIS_YEAR %in% season))]
-stopifnot(tourney_slots[season==2018,any(women==1)])
+stopifnot(tourney_slots[season==THIS_YEAR,any(women==1)])
 
 ##########################################
 # Save
