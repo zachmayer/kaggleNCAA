@@ -21,7 +21,7 @@
 #' @importFrom foreach foreach
 #' @export
 simTourney <- function(
-  preds, N=1000, year=2018, progress=TRUE, upset_bias=0, w=NULL, parallel=FALSE){
+  preds, N=1000, year=2019, progress=TRUE, upset_bias=0, w=NULL, parallel=FALSE){
   utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Checks
@@ -129,7 +129,7 @@ simTourney <- function(
 #' @return a data.table
 #' @importFrom data.table :=
 #' @export
-walkTourney <- function(preds, year=2018, upset_bias=0){
+walkTourney <- function(preds, year=2019, upset_bias=0){
   utils::data('all_slots', package='kaggleNCAA', envir=environment())
 
   #Subset the data
