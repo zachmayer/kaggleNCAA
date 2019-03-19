@@ -4,7 +4,7 @@
 \alias{walkTourney}
 \title{"Walk" an NCAA tournament, from round 0 to round 6}
 \usage{
-walkTourney(preds, year = 2018, upset_bias = 0)
+walkTourney(preds, year = 2019, upset_bias = 0)
 }
 \arguments{
 \item{preds}{Predicted outcomes for ALL possible matchups}

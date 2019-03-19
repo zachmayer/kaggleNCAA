@@ -29,7 +29,7 @@ Now load the tournment from a csv
 set.seed(1)
 library('kaggleNCAA')
 dat <- parseBracket('seed_benchmark_men.csv', w=0)  # w=0 for men
-sim <- simTourney(dat, 10, progress=TRUE, w=0)  # w=0 for men
+sim <- simTourney(dat, 100, progress=TRUE, w=0)  # w=0 for men
 bracket <- extractBracket(sim)
 printableBracket(bracket)
 #> assuming women = 0

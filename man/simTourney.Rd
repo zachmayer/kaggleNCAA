@@ -4,7 +4,7 @@
 \alias{simTourney}
 \title{Simulate the NCAA tournament}
 \usage{
-simTourney(preds, N = 1000, year = 2018, progress = TRUE,
+simTourney(preds, N = 1000, year = 2019, progress = TRUE,
   upset_bias = 0, w = NULL, parallel = FALSE)
 }
 \arguments{
