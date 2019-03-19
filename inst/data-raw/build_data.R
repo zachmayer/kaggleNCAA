@@ -360,6 +360,7 @@ sample_submission_women = sample_submission[women==1,list(id, pred)]
 sample_submission_men = sample_submission[women==0,list(id, pred)]
 write.csv(sample_submission_women, 'inst/kaggle_data/seed_benchmark_women.csv', row.names=F)
 write.csv(sample_submission_men, 'inst/kaggle_data/seed_benchmark_men.csv', row.names=F)
+write.csv(sample_submission_men, 'seed_benchmark_men.csv', row.names=F)
 
 ##########################################
 # Checks
