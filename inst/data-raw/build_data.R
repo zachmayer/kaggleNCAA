@@ -33,7 +33,7 @@ if(FALSE){
 ##########################################
 # Base Kaggle Data
 ##########################################
-THIS_YEAR <- 2018
+THIS_YEAR <- 2019
 load_both <- function(filename, base_dir='inst/kaggle_data/', check_year=THIS_YEAR){
   W <- fread(paste0(base_dir, 'W', filename))
   M <- fread(paste0(base_dir,  '', filename))
